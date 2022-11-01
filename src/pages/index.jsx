@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-//import Products from '@/API/Products'
 // Import Swiper styles
 import 'swiper/css'
 import Link from 'next/link'
+import { getAllProducts } from '@/lib/api'
+import Image from 'next/image'
+import Head from 'next/head'
 
 const sectionData = [
 	{
@@ -52,7 +54,7 @@ const qualityData = [
 	},
 ]
 
-export default function Home(props) {
+export default function Home({ singleProducts }) {
 	const HeroSlider = () => (
 		<Swiper slidesPerView={1}>
 			<SwiperSlide className="bg-[#dafcfe]">
@@ -87,25 +89,30 @@ export default function Home(props) {
 				slidesPerView={5}
 				onSlideChange={() => {}}
 				onSwiper={swiper => console.log(swiper)}>
-				{/*{Products().map((product, idx) => (
+				{singleProducts.map((product, idx) => (
 					<SwiperSlide
 						key={idx}
 						className="flex flex-col items-center justify-between space-y-2.5 rounded-lg border-l-8 border-r-8 border-yellow-300/80 bg-amber-100 py-6">
-						<img src="/images/Australian6-45.png" />
+						<Image
+							src={'/images/Australian6-45.png'}
+							width={80}
+							height={80}
+						/>
 						<h3>
 							<span>{product.lotteryName}</span>{' '}
 							<strong>{product.price}M</strong>
 						</h3>
-						<Link
-							className="rounded-lg bg-gradient-to-r from-orange-400 to-orange-500 py-2 px-8 text-sm text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400"
-							href={`/lotteries/${product.id}`}
-							type="button">
-							Play Now
+						<Link href={`/lotteries/${product.id}`}>
+							<button
+								className="rounded-lg bg-gradient-to-r from-orange-400 to-orange-500 py-2 px-8 text-sm text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400"
+								type="button">
+								Play Now
+							</button>
 						</Link>
 
 						<span>Meta text here</span>
 					</SwiperSlide>
-				))}*/}
+				))}
 			</Swiper>
 		)
 	}
@@ -116,9 +123,11 @@ export default function Home(props) {
 				{data.title}
 			</h3>
 			<p className="text-amber-900">{data.content}</p>
-			<img
+			<Image
+				width={80}
+				height={80}
 				className="mx-auto max-w-[80px]"
-				src="/images/choice-icon.svg"
+				src={'/images/choice-icon.svg'}
 			/>
 		</div>
 	)
@@ -140,11 +149,13 @@ export default function Home(props) {
 
 	return (
 		<>
-			{/*<Head title="Home" />*/}
+			<Head>
+				<title>Home</title>
+			</Head>
+
 			{/* Hero section */}
 			<section>
 				<HeroSlider />
-				<Link href={'/lotteries'}>See lotteries details</Link>
 			</section>
 
 			{/* Products section */}
@@ -184,4 +195,12 @@ export default function Home(props) {
 			</section>
 		</>
 	)
+}
+
+export const getStaticProps = async () => {
+	const singleProducts = await getAllProducts()
+
+	return {
+		props: { singleProducts },
+	}
 }

@@ -5,7 +5,9 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+				heebo: ['Heebo', ...defaultTheme.fontFamily.sans],
+				lato: ['Lato', ...defaultTheme.fontFamily.sans],
+				'open-sans': ['"Open Sans"', ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},

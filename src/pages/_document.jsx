@@ -1,3 +1,5 @@
+import Layout from '@/components/Layout'
+import AppLayout from '@/components/Layouts/AppLayout'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
@@ -10,15 +12,16 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+					<link rel="preconnect" href="https://fonts.bunny.net" />
 					<link
-						href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap"
+						href="https://fonts.bunny.net/css?family=heebo:400,500,700|lato:400i,700i|open-sans:400,400i"
 						rel="stylesheet"
 					/>
 				</Head>
-				<body className="antialiased">
+				<Layout>
 					<Main />
 					<NextScript />
-				</body>
+				</Layout>
 			</Html>
 		)
 	}
