@@ -52,7 +52,7 @@ export default function Lottery({ details, product, lottery }) {
 					/>
 					<div className="text-center">
 						<h2 className="text-2xl font-semibold text-zinc-500">
-							Next {details.name} Lotto
+							Next {details?.name} Lotto
 						</h2>
 						<h1 className="text-7xl font-bold text-cyan-900">
 							$0 Million
