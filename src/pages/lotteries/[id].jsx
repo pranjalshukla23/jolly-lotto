@@ -27,13 +27,7 @@ export default ({ details }) => {
 		let g = []
 
 		for (let i = 0; i <= 2; i++) {
-			const rng = generateRandomNum(balls.total, balls.max)
-
-			g.push({
-				id: i,
-				completed: false,
-				selectedBalls: rng,
-			})
+			g.push(addLotteryLine(i))
 		}
 
 		setLotteryLines(g)
@@ -49,17 +43,44 @@ export default ({ details }) => {
 		}
 	}
 
+	const addLotteryLine = id => {
+		const rng = generateRandomNum(balls.total, balls.max)
+
+		setLotteryCards(lotteryCards + 1)
+		return {
+			id,
+			completed: false,
+			selectedBalls: rng,
+		}
+	}
+
+	const quickPickBalls = id => {
+		const rng = generateRandomNum(balls.total, balls.max)
+		setLotteryLines(lines =>
+			lines.map(line =>
+				line.id === id
+					? {
+							...line,
+							selectedBalls: rng,
+					  }
+					: { ...line },
+			),
+		)
+	}
+
+	const quickPickAllBalls = () => {
+		for (let i = 0; i <= lotteryCards; i++) {
+			quickPickBalls(i)
+		}
+	}
+
 	const AddQuickCard = () => (
 		<div
 			className="flex w-full max-w-[225px] cursor-pointer flex-col items-center justify-center rounded-md border border-slate-300 bg-zinc-50 p-1.5"
 			onClick={() =>
 				setLotteryLines(data => [
 					...data,
-					{
-						id: lotteryLines.length + 1,
-						selected: 10,
-						completed: false,
-					},
+					addLotteryLine(lotteryLines.length),
 				])
 			}>
 			<IconAdd className={'w-16'} />
@@ -67,23 +88,6 @@ export default ({ details }) => {
 				Add Line
 			</span>
 		</div>
-	)
-
-	const handleLotteryLines = useCallback(
-		action => {
-			let count = lotteryCards
-
-			if ('add' === action) {
-				count += 1
-			} else {
-				if (count > 1) {
-					count -= 1
-				}
-			}
-
-			setLotteryCards(count)
-		},
-		[lotteryCards],
 	)
 
 	const handleClearList = id => {
@@ -161,7 +165,8 @@ export default ({ details }) => {
 						<div className="flex gap-x-1.5">
 							<button
 								type="button"
-								className="rounded-md bg-cyan-400 px-5 py-2.5 text-xs font-semibold text-white shadow shadow-cyan-600">
+								className="rounded-md bg-cyan-400 px-5 py-2.5 text-xs font-semibold text-white shadow shadow-cyan-600"
+								onClick={quickPickAllBalls}>
 								Quick Pick All
 							</button>
 							<button
@@ -176,6 +181,7 @@ export default ({ details }) => {
 						{lotteryLines.map((line, idx) => (
 							<LineCard
 								id={idx}
+								quickPick={quickPickBalls}
 								lotteryData={lotteryLines[idx]}
 								setLines={setLotteryLines}
 								clearList={handleClearList}

@@ -10,10 +10,8 @@ export default ({
 	id,
 	totalLines,
 	clearList,
+	quickPick,
 }) => {
-	const [totalBalls, setTotalBalls] = useState([])
-	//const [selectedBalls, setSelectedBalls] = useState([])
-
 	const LotteryBalls = () => {
 		const b = []
 
@@ -23,24 +21,6 @@ export default ({
 
 		return b
 	}
-	const generateLotteryBalls = () => {
-		const count = []
-		const rng = generateRandomNum(balls.total, balls.max)
-
-		for (let i = 1; i <= balls.max; i++) {
-			count.push({ num: i, selected: rng.includes(i) })
-		}
-
-		lotteryData.selectedBalls = rng
-		//setLines(lotteryData)
-
-		//setSelectedBalls(rng)
-		setTotalBalls(count)
-	}
-
-	useEffect(() => {
-		//	generateLotteryBalls()
-	}, [])
 
 	const BallUI = ({ number }) => {
 		//const isSelected = selectedBalls.includes(number)
@@ -134,7 +114,8 @@ export default ({
 			<div className="flex items-stretch justify-between gap-x-1 pt-8">
 				<button
 					type="button"
-					className="flex-1 rounded-xl bg-gradient-to-r from-orange-400 to-orange-500 py-1 px-2 text-xs font-medium text-white hover:from-orange-500 hover:to-orange-400">
+					className="flex-1 rounded-xl bg-gradient-to-r from-orange-400 to-orange-500 py-1 px-2 text-xs font-medium text-white hover:from-orange-500 hover:to-orange-400"
+					onClick={() => quickPick(id)}>
 					Quick Pick
 				</button>
 				<button
@@ -162,9 +143,6 @@ export default ({
 				</span>
 				<div className="mt-2 flex flex-wrap gap-1.5">
 					<LotteryBalls />
-					{/*{balls.max.map((ball, idx) => (
-						<BallUI key={idx} number={ball.num} />
-					))}*/}
 				</div>
 			</div>
 			<BonusBalls />
