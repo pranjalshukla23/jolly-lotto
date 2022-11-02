@@ -1,7 +1,7 @@
 export const generateRandomNum = (quantity, max) => {
-	const set = new Set()
-	while (set.size < quantity) {
-		set.add(Math.floor(Math.random() * max) + 1)
+	const set = []
+	while (set.length < quantity) {
+		set.push(Math.floor(Math.random() * max) + 1)
 	}
 
 	return set

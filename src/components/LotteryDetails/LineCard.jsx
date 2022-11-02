@@ -1,76 +1,128 @@
 import classNames from 'classnames'
-import { useCallback, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { generateRandomNum } from '../Helpers'
 import IconTrash from '../Icons/IconTrash'
 
-export default () => {
-	const lotteryCards = 3
-	const handleLotteryLines = useCallback(
-		action => {
-			let count = lotteryCards
-
-			if ('add' === action) {
-				count += 1
-			} else {
-				if (count > 1) {
-					count -= 1
-				}
-			}
-
-			setLotteryCards(count)
-		},
-		[lotteryCards],
-	)
+export default ({
+	balls,
+	lotteryData,
+	setLines,
+	id,
+	totalLines,
+	clearList,
+}) => {
+	const [totalBalls, setTotalBalls] = useState([])
+	//const [selectedBalls, setSelectedBalls] = useState([])
 
 	const LotteryBalls = () => {
-		//console.log('33', lottery.balls.total)
-		const [balls, setBalls] = useState(56)
-		const ballUI = []
-		const ballsToSelect = 5
-		const totalBalls = 56
-		const rng = generateRandomNum(ballsToSelect, totalBalls)
-		// need to know which card it 	belongs to.
-		// then set state for that card index.
-		//setLotteryLines((state) => (state[0]['selected'] = ballsToSelect))
+		const b = []
 
-		for (let i = 1; i <= balls; i++) {
-			ballUI.push(<BallUI number={i} isSelected={rng.has(i)} key={i} />)
+		for (let i = 1; i <= balls.max; i++) {
+			b.push(<BallUI key={i} number={i} />)
 		}
 
-		return ballUI
+		return b
+	}
+	const generateLotteryBalls = () => {
+		const count = []
+		const rng = generateRandomNum(balls.total, balls.max)
+
+		for (let i = 1; i <= balls.max; i++) {
+			count.push({ num: i, selected: rng.includes(i) })
+		}
+
+		lotteryData.selectedBalls = rng
+		//setLines(lotteryData)
+
+		//setSelectedBalls(rng)
+		setTotalBalls(count)
 	}
 
-	const BallUI = ({ number, isSelected }) => {
-		const [selected, setSelected] = useState(isSelected)
-		const [totalSelected, setTotalSelected] = useState(5)
-		let totalSelectedOK = 5
+	useEffect(() => {
+		//	generateLotteryBalls()
+	}, [])
 
-		console.log('totla d', totalSelectedOK)
+	const BallUI = ({ number }) => {
+		//const isSelected = selectedBalls.includes(number)
+		const isSelected = lotteryData.selectedBalls.includes(number)
+
+		const handleToggleSelected = () => {
+			if (isSelected) {
+				setLines(lines =>
+					lines.map(line =>
+						line.id === id
+							? {
+									...line,
+									selectedBalls: lotteryData.selectedBalls.filter(
+										x => x !== number,
+									),
+							  }
+							: { ...line },
+					),
+				)
+			} else {
+				//if (selectedBalls.length < balls.total) {
+				if (lotteryData.selectedBalls.length < balls.total) {
+					let y = lotteryData.selectedBalls.push(number)
+					setLines(lines =>
+						lines.map(line =>
+							line.id === id
+								? {
+										...line,
+										selectedBalls:
+											lotteryData.selectedBalls,
+								  }
+								: { ...line },
+						),
+					)
+				}
+			}
+		}
 
 		return (
 			<span
 				className={classNames(
 					'flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded border border-slate-200 text-xs',
 					{
-						'bg-white': !selected,
-						'bg-green-500 text-white': selected,
+						'bg-white': !isSelected,
+						'bg-green-500 text-white': isSelected,
 					},
 				)}
-				onClick={() => {
-					if (totalSelectedOK < 5) {
-						console.log('whenn')
-						//setSelected((state) => !state)
-						totalSelectedOK += 1
-						//setTotalSelected((state) => state + 1)
-					} else if (totalSelectedOK >= 5 && selected) {
-						//setSelected((state) => !state)
-						totalSelectedOK -= 1
-						//setTotalSelected((state) => state - 1)
-					}
-				}}>
+				onClick={handleToggleSelected}>
 				{number}
 			</span>
 		)
+	}
+
+	const BonusBalls = () => {
+		const ballUI = []
+		if (balls.bonus.length > 1) return null
+
+		// @todo: we always take the first bonus ball type.
+		const bonusBall = balls.bonus[0]
+
+		const rng = generateRandomNum(bonusBall.ballNumber, bonusBall.maxNumber)
+		// need to know which card it 	belongs to.
+		// then set state for that card index.
+		//setLotteryLines((state) => (state[0]['selected'] = ballsToSelect))
+
+		//for ( let i = 1; i <= bonusBall.maxNumber; i++ ) {
+		//    <span className="flex h-6 w-6 cursor-pointer items-center justify-center rounded border border-slate-200 bg-amber-100 text-xs">
+		//		1
+		//	</span>
+		//	ballUI.push(<BallUI number={i} isSelected={rng.has(i)} key={i} />)
+		//}
+
+		//<div className="mt-3">
+		//		<span className="block text-sm">Select 2 Super</span>
+		//		<div className="mt-2 flex flex-wrap gap-1.5">
+		//		</div>
+		//	</div>
+		//return ballUI
+	}
+
+	const handleRemoveLotteryLine = () => {
+		setLines(prevState => prevState.filter(list => list.id !== id))
 	}
 
 	return (
@@ -87,7 +139,8 @@ export default () => {
 				</button>
 				<button
 					type="button"
-					className="rounded-xl bg-cyan-400 py-1 px-4 text-xs font-medium text-white">
+					className="rounded-xl bg-cyan-400 py-1 px-4 text-xs font-medium text-white"
+					onClick={() => clearList(id)}>
 					Clear
 				</button>
 				<button
@@ -95,28 +148,26 @@ export default () => {
 					className={classNames(
 						'rounded-xl py-1 px-4 text-xs font-medium text-white',
 						{
-							'bg-cyan-400': lotteryCards > 1,
-							'cursor-not-allowed bg-gray-300': lotteryCards <= 1,
+							'bg-cyan-400': totalLines > 1,
+							'cursor-not-allowed bg-gray-300': totalLines <= 1,
 						},
 					)}
-					onClick={() => handleLotteryLines('remove')}>
+					onClick={e => handleRemoveLotteryLine(e)}>
 					<IconTrash className={'w-2.5'} />
 				</button>
 			</div>
 			<div className="mt-3">
-				<span className="block text-sm">Select 61 Numbers</span>
+				<span className="block text-sm">
+					Select {balls.max} Numbers
+				</span>
 				<div className="mt-2 flex flex-wrap gap-1.5">
 					<LotteryBalls />
+					{/*{balls.max.map((ball, idx) => (
+						<BallUI key={idx} number={ball.num} />
+					))}*/}
 				</div>
 			</div>
-			<div className="mt-3">
-				<span className="block text-sm">Select 2 Super</span>
-				<div className="flex flex-wrap">
-					<span className="flex h-6 w-6 cursor-pointer items-center justify-center rounded border border-slate-200 bg-amber-100 text-xs">
-						1
-					</span>
-				</div>
-			</div>
+			<BonusBalls />
 		</div>
 	)
 }

@@ -198,7 +198,8 @@ export default function Home({ singleProducts }) {
 }
 
 export const getStaticProps = async () => {
-	const singleProducts = await getAllProducts()
+	const products = await getAllProducts()
+	const singleProducts = products.filter(prod => prod.type === 1)
 
 	return {
 		props: { singleProducts },
