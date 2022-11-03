@@ -145,7 +145,7 @@ export default ({
 					<LotteryBalls />
 				</div>
 			</div>
-			<BonusBalls />
+			{/*<BonusBalls />*/}
 		</div>
 	)
 }
