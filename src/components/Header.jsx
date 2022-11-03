@@ -19,9 +19,9 @@ export default () => {
 		<header className="py-2.5 border-b border-b-gray-200 bg-white">
 			<div className="flex items-center container max-w-6xl mx-auto space-x-20">
 				<Link href="/">
-					<span className="w-32 flex-shrink-0">
+					<a className="w-32 flex-shrink-0">
 						<Logo />
-					</span>
+					</a>
 				</Link>
 
 				<div className="flex-1">

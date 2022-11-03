@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default () => {
 	return (
 		<section className="bg-orange-50 py-10">
@@ -14,7 +16,12 @@ export default () => {
 					</p>
 					<div className="mt-5">
 						<div className="flex items-center gap-x-5">
-							<img src="/images/draw-list-icon1.svg" alt="" />
+							<Image
+								src="/images/draw-list-icon1.svg"
+								alt="icon"
+								width={64}
+								height={64}
+							/>
 							<div>
 								<h3 className="text-lg font-semibold text-teal-600">
 									Three Draws per week
@@ -28,7 +35,12 @@ export default () => {
 					</div>
 				</div>
 				<div className="max-w-xl flex-1">
-					<img src="/images/oz-doc-img.png" alt="ban" />
+					<Image
+						src="/images/oz-doc-img.png"
+						width={600}
+						height={250}
+						alt="ban"
+					/>
 					<div>
 						<details className="transition-all duration-300">
 							<summary>Details</summary>

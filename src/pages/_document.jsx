@@ -1,5 +1,4 @@
 import Layout from '@/components/Layout'
-import AppLayout from '@/components/Layouts/AppLayout'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
