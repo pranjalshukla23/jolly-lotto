@@ -8,7 +8,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import Countdown from 'react-countdown'
 
 export default ({ details }) => {
 	const router = useRouter()
@@ -18,10 +19,9 @@ export default ({ details }) => {
 		return <ErrorPage statusCode={404} />
 	}
 
-	const [lotteryCards, setLotteryCards] = useState(3)
 	const [weeks, setWeeks] = useState(1)
 	const [lotteryLines, setLotteryLines] = useState([])
-	//const [selectedBalls, setSelectedBalls] = useState([])
+	const [price, setPrice] = useState(details?.prices?.price)
 
 	const LotteryLinesList = () => {
 		let g = []
@@ -38,7 +38,7 @@ export default ({ details }) => {
 	}, [])
 
 	const handleClearAll = () => {
-		for (let i = 0; i <= lotteryCards; i++) {
+		for (let i = 0; i <= lotteryLines.length; i++) {
 			handleClearList(i)
 		}
 	}
@@ -46,7 +46,6 @@ export default ({ details }) => {
 	const addLotteryLine = id => {
 		const rng = generateRandomNum(balls.total, balls.max)
 
-		setLotteryCards(lotteryCards + 1)
 		return {
 			id,
 			completed: false,
@@ -69,7 +68,7 @@ export default ({ details }) => {
 	}
 
 	const quickPickAllBalls = () => {
-		for (let i = 0; i <= lotteryCards; i++) {
+		for (let i = 0; i <= lotteryLines.length; i++) {
 			quickPickBalls(i)
 		}
 	}
@@ -104,6 +103,21 @@ export default ({ details }) => {
 		)
 	}
 
+	const cutOffCountDown = ({ hours, minutes, seconds, completed }) => {
+		if (completed) {
+			// Render a completed state
+			//return <Completionist />
+			return null
+		} else {
+			// Render a countdown
+			return (
+				<span>
+					0 Day(s) {hours}:{minutes}:{seconds}
+				</span>
+			)
+		}
+	}
+
 	return (
 		<>
 			<Head>
@@ -130,7 +144,17 @@ export default ({ details }) => {
 							Draw Cutoff Timer
 						</span>
 						<div className="rounded-lg bg-white py-1 px-9 text-center text-xl font-bold text-red-600">
-							2 Days
+							<Countdown
+								daysInHours={true}
+								date={
+									Date.now() +
+									details?.lottery?.cut_offs[0].hours *
+										60 *
+										60 *
+										1000
+								}
+								renderer={cutOffCountDown}
+							/>
 						</div>
 					</div>
 				</div>
@@ -185,7 +209,7 @@ export default ({ details }) => {
 								lotteryData={lotteryLines[idx]}
 								setLines={setLotteryLines}
 								clearList={handleClearList}
-								totalLines={lotteryCards}
+								totalLines={lotteryLines.length}
 								key={idx}
 								balls={details.lottery.balls}
 							/>
@@ -205,29 +229,45 @@ export default ({ details }) => {
 								Select your Draw Days
 							</h4>
 							<ul>
-								<li>
-									<input type="checkbox" name="" id="" />
-									Wednesday
-								</li>
+								{details?.lottery?.draw_dates.map(date => {
+									return (
+										<li
+											key={date.id}
+											className="flex space-x-2 items-center">
+											<input
+												type="checkbox"
+												name=""
+												id=""
+											/>
+											<span>{date.drawDay}</span>
+										</li>
+									)
+								})}
 							</ul>
 						</div>
 					</div>
 					<div className="max-w-sm flex-1">
 						<h4 className="text-base font-semibold text-cyan-900">
-							EuroMillions
+							{details?.lotteryName}
 						</h4>
 						<div>
 							{/* item list here */}
 							<div className="flex justify-between">
 								<span>
-									{/*{lotteryCards} lines x {weeks} draw*/}
+									{lotteryLines.length}{' '}
+									{lotteryLines.length > 1 ? 'lines' : 'line'}{' '}
+									x {weeks} {weeks > 1 ? 'draws' : 'draw'}
 								</span>
-								<span>$90.00</span>
+								<span>
+									${price * weeks * lotteryLines.length}
+								</span>
 							</div>
 							{/* total line here */}
 							<div className="flex justify-between border-t-2 border-gray-300">
-								<span>Total:</span>
-								<span>$800.00</span>
+								<strong>Total:</strong>
+								<span>
+									${price * weeks * lotteryLines.length}
+								</span>
 							</div>
 						</div>
 						{/* confirm button */}

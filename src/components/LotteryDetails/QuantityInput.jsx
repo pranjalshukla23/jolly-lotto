@@ -5,7 +5,7 @@ export default ({ weeks, setWeeks }) => {
 		// take single lottery price, based on selected currency.
 		// multiply by no weeks and no cards.
 		console.log('here')
-		setWeeks((state) => state + 1)
+		setWeeks(state => state + 1)
 	}, [])
 
 	return (
@@ -14,9 +14,8 @@ export default ({ weeks, setWeeks }) => {
 				type="button"
 				className="flex h-16 w-14 items-center justify-center rounded-tl-xl rounded-bl-xl bg-gray-100 text-3xl text-white hover:bg-cyan-400"
 				onClick={() =>
-					setWeeks((state) => (state > 1 ? state - 1 : state))
-				}
-			>
+					setWeeks(state => (state > 1 ? state - 1 : state))
+				}>
 				-
 			</button>
 			<div className="flex flex-col items-center justify-center border-2 border-slate-300 bg-zinc-100">
@@ -25,15 +24,16 @@ export default ({ weeks, setWeeks }) => {
 					className="border-none bg-transparent p-0 text-center text-lg font-bold focus:ring-0"
 					min={1}
 					value={weeks}
-					onChange={(e) => (e.target.value = weeks)}
+					onChange={e => (e.target.value = weeks)}
 				/>
-				<span className="text-center text-xs">Week</span>
+				<span className="text-center text-xs">
+					{weeks > 1 ? 'Weeks' : 'Week'}
+				</span>
 			</div>
 			<button
 				type="button"
 				className="flex h-16 w-14 items-center justify-center rounded-tr-xl rounded-br-xl bg-gray-100 text-3xl text-white hover:bg-cyan-400"
-				onClick={() => setWeeks((state) => state + 1)}
-			>
+				onClick={() => setWeeks(state => state + 1)}>
 				+
 			</button>
 		</div>
