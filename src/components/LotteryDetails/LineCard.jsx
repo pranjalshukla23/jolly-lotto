@@ -22,6 +22,10 @@ export default ({
 		return b
 	}
 
+	const removeList = id => {
+		setLines(lines => lines.filter(list => list.id !== id))
+	}
+
 	const BallUI = ({ number }) => {
 		//const isSelected = selectedBalls.includes(number)
 		const isSelected = lotteryData.selectedBalls.includes(number)
@@ -41,6 +45,7 @@ export default ({
 					),
 				)
 			} else {
+				console.log('why here')
 				//if (selectedBalls.length < balls.total) {
 				if (lotteryData.selectedBalls.length < balls.total) {
 					let y = lotteryData.selectedBalls.push(number)
@@ -101,10 +106,6 @@ export default ({
 		//return ballUI
 	}
 
-	const handleRemoveLotteryLine = () => {
-		setLines(prevState => prevState.filter(list => list.id !== id))
-	}
-
 	return (
 		<div
 			className={classNames('max-w-[225px] rounded-md border p-1.5', {
@@ -133,7 +134,7 @@ export default ({
 							'cursor-not-allowed bg-gray-300': totalLines <= 1,
 						},
 					)}
-					onClick={e => handleRemoveLotteryLine(e)}>
+					onClick={() => removeList(id)}>
 					<IconTrash className={'w-2.5'} />
 				</button>
 			</div>
