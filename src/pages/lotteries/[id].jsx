@@ -22,6 +22,8 @@ export default ({ details }) => {
 	const [weeks, setWeeks] = useState(1)
 	const [lotteryLines, setLotteryLines] = useState([])
 	const [price, setPrice] = useState(details?.prices?.price)
+	const [drawDays, setDrawDays] = useState([])
+	const [selectedDrawDays, setSelectedDrawDays] = useState(0)
 
 	const LotteryLinesList = () => {
 		let g = []
@@ -33,8 +35,24 @@ export default ({ details }) => {
 		setLotteryLines(g)
 	}
 
+	const drawDates = () => {
+		const f = []
+		details?.lottery?.draw_dates.map((date, idx) => {
+			f.push({
+				id: idx,
+				day: date.drawDay,
+				selected: idx === 0,
+			})
+		})
+
+		setSelectedDrawDays(selectedDrawDays + 1)
+		setDrawDays(f)
+	}
+
 	useEffect(() => {
 		LotteryLinesList()
+
+		drawDates()
 	}, [])
 
 	const handleClearAll = () => {
@@ -116,6 +134,55 @@ export default ({ details }) => {
 				</span>
 			)
 		}
+	}
+
+	const CutoffDay = ({ id, day, selected }) => {
+		const handleCutoffDays = () => {
+			if (selectedDrawDays <= 1 && selected) return
+
+			if (selected) {
+				setDrawDays(prev =>
+					prev.map(day =>
+						day.id === id
+							? { ...day, selected: false }
+							: { ...day },
+					),
+				)
+				setSelectedDrawDays(selectedDrawDays - 1)
+			} else {
+				setDrawDays(prev =>
+					prev.map(day =>
+						day.id === id ? { ...day, selected: true } : { ...day },
+					),
+				)
+
+				setSelectedDrawDays(selectedDrawDays + 1)
+			}
+			//if (checked) {
+			//	console.log('beh ere')
+			//	//setChecked(false)
+			//	setSelectedDrawDays(prev =>
+			//		prev.map(x =>
+			//			x.day === day ? { selected: false } : { ...x },
+			//		),
+			//	)
+			//} else {
+			//	console.log('not checked')
+			//	setChecked(prev => !prev)
+			//	setSelectedDrawDays(prev => [...prev, { day }])
+			//}
+		}
+
+		return (
+			<li className="flex space-x-2 items-center">
+				<input
+					type="checkbox"
+					checked={selected}
+					onChange={handleCutoffDays}
+				/>
+				<span>{day}</span>
+			</li>
+		)
 	}
 
 	return (
@@ -229,18 +296,14 @@ export default ({ details }) => {
 								Select your Draw Days
 							</h4>
 							<ul>
-								{details?.lottery?.draw_dates.map(date => {
+								{drawDays.map(date => {
 									return (
-										<li
+										<CutoffDay
 											key={date.id}
-											className="flex space-x-2 items-center">
-											<input
-												type="checkbox"
-												name=""
-												id=""
-											/>
-											<span>{date.drawDay}</span>
-										</li>
+											id={date.id}
+											day={date.day}
+											selected={date.selected}
+										/>
 									)
 								})}
 							</ul>
@@ -259,14 +322,22 @@ export default ({ details }) => {
 									x {weeks} {weeks > 1 ? 'draws' : 'draw'}
 								</span>
 								<span>
-									${price * weeks * lotteryLines.length}
+									$
+									{price *
+										weeks *
+										lotteryLines.length *
+										selectedDrawDays}
 								</span>
 							</div>
 							{/* total line here */}
 							<div className="flex justify-between border-t-2 border-gray-300">
 								<strong>Total:</strong>
 								<span>
-									${price * weeks * lotteryLines.length}
+									$
+									{price *
+										weeks *
+										lotteryLines.length *
+										selectedDrawDays}
 								</span>
 							</div>
 						</div>

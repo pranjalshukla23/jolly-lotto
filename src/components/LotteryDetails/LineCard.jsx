@@ -45,7 +45,6 @@ export default ({
 					),
 				)
 			} else {
-				console.log('why here')
 				//if (selectedBalls.length < balls.total) {
 				if (lotteryData.selectedBalls.length < balls.total) {
 					let y = lotteryData.selectedBalls.push(number)
