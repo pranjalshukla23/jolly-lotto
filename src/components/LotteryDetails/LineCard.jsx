@@ -23,7 +23,7 @@ export default ({
 	}
 
 	const removeList = id => {
-		setLines(lines => lines.filter(list => list.id !== id))
+		setLines(lines => lines.filter((list, idx) => idx !== id))
 	}
 
 	const BallUI = ({ number }) => {

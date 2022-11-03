@@ -32,7 +32,7 @@ export default ({ details }) => {
 		let g = []
 
 		for (let i = 0; i <= 2; i++) {
-			g.push(addLotteryLine(i))
+			g.push(addLotteryLine())
 		}
 
 		setLotteryLines(g)
@@ -64,11 +64,10 @@ export default ({ details }) => {
 		}
 	}
 
-	const addLotteryLine = id => {
+	const addLotteryLine = () => {
 		const rng = generateRandomNum(balls.total, balls.max)
 
 		return {
-			id,
 			completed: false,
 			selectedBalls: rng,
 		}
@@ -77,8 +76,8 @@ export default ({ details }) => {
 	const quickPickBalls = id => {
 		const rng = generateRandomNum(balls.total, balls.max)
 		setLotteryLines(lines =>
-			lines.map(line =>
-				line.id === id
+			lines.map((line, idx) =>
+				idx === id
 					? {
 							...line,
 							selectedBalls: rng,
@@ -98,10 +97,7 @@ export default ({ details }) => {
 		<div
 			className="flex w-full max-w-[225px] cursor-pointer flex-col items-center justify-center rounded-md border border-slate-300 bg-zinc-50 p-1.5"
 			onClick={() =>
-				setLotteryLines(data => [
-					...data,
-					addLotteryLine(lotteryLines.length),
-				])
+				setLotteryLines(data => [...data, addLotteryLine()])
 			}>
 			<IconAdd className={'w-16'} />
 			<span className="mt-2.5 block text-base font-semibold text-cyan-900">
@@ -111,10 +107,9 @@ export default ({ details }) => {
 	)
 
 	const handleClearList = id => {
-		// clear all selected numbers of a lottery line.
 		setLotteryLines(lines =>
-			lines.map(line =>
-				line.id === id
+			lines.map((line, idx) =>
+				idx === id
 					? {
 							...line,
 							selectedBalls: [],
@@ -235,7 +230,7 @@ export default ({ details }) => {
 						</Link>
 						<Link
 							className="cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900"
-							href="/results">
+							href="results">
 							Results
 						</Link>
 					</nav>
