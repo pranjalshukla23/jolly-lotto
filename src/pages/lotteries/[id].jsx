@@ -8,12 +8,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Countdown from 'react-countdown'
 
 export default ({ details }) => {
 	const router = useRouter()
-	const balls = details.lottery.balls
+	const balls = details?.lottery?.balls
 
 	if (!router.isFallback && !details) {
 		return <ErrorPage statusCode={404} />
@@ -24,6 +24,9 @@ export default ({ details }) => {
 	const [price, setPrice] = useState(details?.prices?.price)
 	const [drawDays, setDrawDays] = useState([])
 	const [selectedDrawDays, setSelectedDrawDays] = useState(0)
+	const [cutoffTime, setCutoffTime] = useState(
+		Date.now() + details?.lottery?.cut_offs[0]?.hours * 60 * 60 * 1000,
+	)
 
 	const LotteryLinesList = () => {
 		let g = []
@@ -213,13 +216,7 @@ export default ({ details }) => {
 						<div className="rounded-lg bg-white py-1 px-9 text-center text-xl font-bold text-red-600">
 							<Countdown
 								daysInHours={true}
-								date={
-									Date.now() +
-									details?.lottery?.cut_offs[0].hours *
-										60 *
-										60 *
-										1000
-								}
+								date={cutoffTime}
 								renderer={cutOffCountDown}
 							/>
 						</div>
@@ -278,7 +275,7 @@ export default ({ details }) => {
 								clearList={handleClearList}
 								totalLines={lotteryLines.length}
 								key={idx}
-								balls={details.lottery.balls}
+								balls={balls}
 							/>
 						))}
 						<AddQuickCard />
