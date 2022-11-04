@@ -22,8 +22,14 @@ export default ({
 		return b
 	}
 
+	/**
+	 *
+	 * @param {number} id
+	 */
 	const removeList = id => {
-		setLines(lines => lines.filter((list, idx) => idx !== id))
+		setLines(lines =>
+			lines.length > 1 ? lines.filter((list, idx) => idx !== id) : lines,
+		)
 	}
 
 	const BallUI = ({ number }) => {
