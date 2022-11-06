@@ -8,11 +8,6 @@ export default ({ results }) => {
 	const [months, setMonths] = useState([])
 	const [selectedMonth, setSelectedMonth] = useState('Aug 2022')
 
-	const handleChangeMonth = e => {
-		console.log('some e.target.value', e.target.value)
-		s
-	}
-
 	const getMonths = () => {
 		const z = []
 		results.map(result => {
@@ -31,15 +26,14 @@ export default ({ results }) => {
 		getMonths()
 	}, [])
 
-	useEffect(() => {
-		console.log('why again')
-		document
-			.querySelectorAll('[data-month-group="' + selectedMonth + '"]')
-			.forEach(elm => {
-				elm.classList.remove('hidden')
-				elm.classList.add('flex')
-			})
-	}, [selectedMonth])
+	//useEffect(() => {
+	//	document
+	//		.querySelectorAll('[data-month-group="' + selectedMonth + '"]')
+	//		.forEach(elm => {
+	//			elm.classList.remove('hidden')
+	//			elm.classList.add('flex')
+	//		})
+	//}, [selectedMonth])
 
 	const Results = () => {
 		const rows = results.map(row => (
@@ -64,7 +58,7 @@ export default ({ results }) => {
 								<span className="max-w-[200px] flex-1">
 									{moment(row.draw_date).format('Do MMM')}
 								</span>
-								<span className="flex-1">{row.jackpot}</span>
+								<span className="flex-1">${row.jackpot}</span>
 								<div className="flex flex-1 space-x-3">
 									{row.board.split(',').map(n => (
 										<span
@@ -81,8 +75,6 @@ export default ({ results }) => {
 											aria-hidden="true"
 										/>
 									) : (
-										//<MinusIcon
-										///>
 										<ChevronDownIcon
 											className="h-5 w-5"
 											aria-hidden="true"
@@ -174,7 +166,6 @@ export default ({ results }) => {
 				<div>
 					<h3>Select month</h3>
 					<select
-						//onChange={handleChangeMonth}
 						onChange={e => setSelectedMonth(e.target.value)}
 						value={selectedMonth}>
 						{months.map(month => (
