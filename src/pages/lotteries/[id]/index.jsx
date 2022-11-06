@@ -5,7 +5,6 @@ import SectionResults from '@/components/LotteryDetails/SectionResults'
 import { getAllProducts, getLotteryResults, getProductByID } from '@/lib/api'
 import classNames from 'classnames'
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
@@ -74,7 +73,7 @@ export default ({ details, results }) => {
 
 export const getStaticProps = async ({ params }) => {
 	const details = await getProductByID(params.id)
-	const results = await getLotteryResults(1)
+	const results = await getLotteryResults(details?.lottery?.id)
 
 	return {
 		props: { details, results },
