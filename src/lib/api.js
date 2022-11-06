@@ -16,3 +16,8 @@ export const getProductByID = id => {
 	// @todo: do we make this call everytime or cache all prods once and then get it from there?
 	return axios.get(`/lotteries/${id}`).then(res => res.data)
 }
+
+export const getLotteryResults = async id => {
+	const resp = await axios.get(`/lotteries/${id}/results`)
+	return resp.data
+}
