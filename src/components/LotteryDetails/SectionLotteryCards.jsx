@@ -129,20 +129,29 @@ export default ({ details }) => {
 
 		return (
 			<li className="flex items-center space-x-2">
-				<input
-					type="checkbox"
-					checked={selected}
-					onChange={handleCutoffDays}
-				/>
-				<span>{day}</span>
+				<div className="flex items-center">
+					<input
+						id={id}
+						defaultValue={day}
+						type="checkbox"
+						checked={selected}
+						className="h-5 w-5 cursor-pointer border-gray-300 text-teal-500 focus:ring-0 "
+						onChange={handleCutoffDays}
+					/>
+					<label
+						htmlFor={id}
+						className="ml-3 min-w-0 flex-1 cursor-pointer text-gray-500 ">
+						{day}
+					</label>
+				</div>
 			</li>
 		)
 	}
 
 	return (
-		<section className="pb-10">
+		<section className="mt-8">
 			<div className="container mx-auto max-w-6xl">
-				<h2 className="mt-8 text-2xl font-semibold text-teal-600">
+				<h2 className="text-2xl font-semibold text-teal-600">
 					Play German Lotto Single Play
 				</h2>
 				<h6 className="text-sm text-cyan-900">
@@ -213,13 +222,13 @@ export default ({ details }) => {
 					<h4 className="text-base font-semibold text-cyan-900">
 						{details?.lotteryName}
 					</h4>
-					<div>
-						{/* item list here */}
+					<div className="space-y-2 divide-y-2 divide-gray-300">
 						<div className="flex justify-between">
 							<span>
-								{lotteryLines.length}{' '}
-								{lotteryLines.length > 1 ? 'lines' : 'line'} x{' '}
-								{weeks} {weeks > 1 ? 'draws' : 'draw'}
+								{` ${lotteryLines.length} ${
+									lotteryLines.length > 1 ? 'lines' : 'line'
+								} x
+								${weeks} ${weeks > 1 ? 'draws' : 'draw'}`}
 							</span>
 							<span>
 								$
@@ -230,7 +239,7 @@ export default ({ details }) => {
 							</span>
 						</div>
 						{/* total line here */}
-						<div className="flex justify-between border-t-2 border-gray-300">
+						<div className="flex justify-between pt-2">
 							<strong>Total:</strong>
 							<span>
 								$

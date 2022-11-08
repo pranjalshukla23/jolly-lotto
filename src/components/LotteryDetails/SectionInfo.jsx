@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default () => {
 	return (
-		<section className="bg-orange-50 py-10">
+		<section className="mt-10 bg-orange-50 py-10">
 			<div className="mx-auto flex max-w-6xl justify-between gap-x-5">
 				<div className="max-w-xl flex-1">
 					<h2 className="text-2xl font-semibold text-teal-600">

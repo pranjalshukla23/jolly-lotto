@@ -8,6 +8,7 @@ module.exports = {
 				heebo: ['Heebo', ...defaultTheme.fontFamily.sans],
 				lato: ['Lato', ...defaultTheme.fontFamily.sans],
 				'open-sans': ['"Open Sans"', ...defaultTheme.fontFamily.sans],
+				impact: ['Impact', ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},

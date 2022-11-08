@@ -8,3 +8,8 @@
 		margin: 0;
 	}
 }
+
+@font-face {
+	font-family: 'Impact';
+	src: url('/fonts/Impact.woff'), url('/fonts/Impact.woff2');
+}

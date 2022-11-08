@@ -1,13 +1,4 @@
-import { useCallback, useState } from 'react'
-
 export default ({ weeks, setWeeks }) => {
-	const handleTotalCost = useCallback(() => {
-		// take single lottery price, based on selected currency.
-		// multiply by no weeks and no cards.
-		console.log('here')
-		setWeeks(state => state + 1)
-	}, [])
-
 	return (
 		<div className="flex gap-x-2.5">
 			<button

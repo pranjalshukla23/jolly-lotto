@@ -35,12 +35,13 @@ export default ({ details }) => {
 					<h2 className="text-2xl font-semibold text-zinc-500">
 						Next {details?.lotteryName} Lotto
 					</h2>
-					<h1 className="text-7xl font-bold text-cyan-900">
-						${details?.price} Million
+					<h1 className="font-impact text-7xl font-bold text-cyan-900">
+						<small className="text-3xl">$</small>
+						{details?.price} Million
 					</h1>
 				</div>
-				<div>
-					<span className="block text-zinc-500">
+				<div className="text-center">
+					<span className="block text-base text-zinc-600">
 						Draw Cutoff Timer
 					</span>
 					<div className="rounded-lg bg-white py-1 px-9 text-center text-xl font-bold text-red-600">
