@@ -2,18 +2,30 @@ import SectionHero from '@/components/LotteryDetails/SectionHero'
 import SectionInfo from '@/components/LotteryDetails/SectionInfo'
 import SectionLotteryCards from '@/components/LotteryDetails/SectionLotteryCards'
 import SectionResults from '@/components/LotteryDetails/SectionResults'
-import { getAllProducts, getLotteryResults, getProductByID } from '@/lib/api'
+import {
+	getAllProducts,
+	getLotteryResults,
+	getProductByID,
+	getSingleProducts,
+} from '@/lib/api'
 import classNames from 'classnames'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import ErrorPage from 'next/error'
 
 export default ({ details, results }) => {
 	const router = useRouter()
 	const [activeTab, setActiveTab] = useState('cards')
 
-	if (!router.isFallback && !details) {
-		return <ErrorPage statusCode={404} />
+	if (!router.isFallback && !details?.lottery) {
+		// maybe make an api call to fetch data.
+		return (
+			<ErrorPage
+				title="Data not available for this product"
+				statusCode={404}
+			/>
+		)
 	}
 
 	return (
@@ -82,7 +94,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-	const posts = await getAllProducts()
+	const posts = await getSingleProducts()
 
 	return {
 		paths: posts.map(post => `/lotteries/${post.id}`) || [],
