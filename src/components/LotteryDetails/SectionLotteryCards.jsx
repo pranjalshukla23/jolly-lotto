@@ -5,7 +5,7 @@ import QuantityInput from '@/components/LotteryDetails/QuantityInput'
 import { useEffect, useState } from 'react'
 
 export default ({ details }) => {
-	const balls = details?.lottery?.balls
+	const balls = details?.lottery?.balls ?? 0
 	const [weeks, setWeeks] = useState(1)
 	const [lotteryLines, setLotteryLines] = useState([])
 	const [price, setPrice] = useState(details?.prices?.price)

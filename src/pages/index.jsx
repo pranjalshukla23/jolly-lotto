@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/css'
 import Link from 'next/link'
-import { getAllProducts } from '@/lib/api'
+import { getAllProducts, getSingleProducts } from '@/lib/api'
 import Image from 'next/image'
 import Head from 'next/head'
 
@@ -198,8 +198,7 @@ export default function Home({ singleProducts }) {
 }
 
 export const getStaticProps = async () => {
-	const products = await getAllProducts()
-	const singleProducts = products.filter(prod => prod.type === 1)
+	const singleProducts = await getSingleProducts()
 
 	return {
 		props: { singleProducts },

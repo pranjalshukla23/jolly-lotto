@@ -4,12 +4,15 @@ import axios from './axios'
 //	const res = await axios.get('/lotteries')
 //	return res.data
 //}
-export const getAllProducts = () => {
-	return axios.get('/lotteries').then(res => res.data)
+export const getAllProducts = async () => {
+	const resp = await axios.get('/lotteries')
+	return resp.data
 }
 
-export const getSingleProducts = () => {
+export const getSingleProducts = async () => {
 	// return single type products here.
+	const products = await getAllProducts()
+	return products.filter(prod => prod.type === 1)
 }
 
 export const getProductByID = id => {
