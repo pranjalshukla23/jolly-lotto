@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 // Import Swiper React components
+import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/css'
+import 'swiper/css/navigation'
 import Link from 'next/link'
 import { getAllProducts, getSingleProducts } from '@/lib/api'
 import Image from 'next/image'
@@ -59,11 +61,17 @@ export default function Home({ singleProducts }) {
 		<Swiper slidesPerView={1}>
 			<SwiperSlide className="bg-[#dafcfe]">
 				<div className="mx-auto flex max-w-6xl items-center justify-between">
-					<img src="/images/banner-man-1.png" />
-					<div>
+					<Image
+						src="/images/banner-man-1.png"
+						width={510}
+						height={290}
+					/>
+					<div className="text-center">
 						<h2>Header Lorem Ipsum</h2>
 						<p>Support Lorem Ipsum</p>
-						<h2 className="text-7xl">$100 MILLION</h2>
+						<h2 className="font-impact text-7xl text-teal-900">
+							$100 MILLION
+						</h2>
 						<a href="#">Play Now</a>
 					</div>
 				</div>
@@ -83,12 +91,21 @@ export default function Home({ singleProducts }) {
 	)
 
 	const SwiperElm = () => {
+		const prevRef = useRef(null)
+		const nextRef = useRef(null)
+
 		return (
 			<Swiper
+				className="relative"
+				modules={[Navigation]}
+				onInit={swiper => {
+					swiper.params.navigation.prevEl = prevRef.current
+					swiper.params.navigation.nextEl = nextRef.current
+					swiper.navigation.init()
+					swiper.navigation.update()
+				}}
 				spaceBetween={30}
-				slidesPerView={5}
-				onSlideChange={() => {}}
-				onSwiper={swiper => console.log(swiper)}>
+				slidesPerView={5}>
 				{singleProducts.map((product, idx) => (
 					<SwiperSlide
 						key={idx}
@@ -113,6 +130,42 @@ export default function Home({ singleProducts }) {
 						<span>Meta text here</span>
 					</SwiperSlide>
 				))}
+				<button
+					type="button"
+					className="absolute top-1/3 z-50 flex h-16 w-11 items-center justify-center rounded-tr-lg rounded-br-lg bg-gray-200"
+					ref={prevRef}>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth={1.5}
+						stroke="currentColor"
+						className="h-10 w-10 text-white">
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M15.75 19.5L8.25 12l7.5-7.5"
+						/>
+					</svg>
+				</button>
+				<button
+					type="button"
+					className="absolute top-1/3 right-0 z-50 flex h-16 w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-gray-200"
+					ref={nextRef}>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth={1.5}
+						stroke="currentColor"
+						className="h-10 w-10 text-white">
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M8.25 4.5l7.5 7.5-7.5 7.5"
+						/>
+					</svg>
+				</button>
 			</Swiper>
 		)
 	}
