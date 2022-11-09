@@ -85,8 +85,8 @@ export default ({ details, results }) => {
 
 export const getStaticProps = async ({ params }) => {
 	const details = await getProductByID(params.id)
-	//const results = await getLotteryResults(details?.lottery?.id)
-	const results = await getLotteryResults(1)
+	const results = await getLotteryResults(details?.lottery?.id)
+	//const results = await getLotteryResults(1)
 
 	return {
 		props: { details, results },
