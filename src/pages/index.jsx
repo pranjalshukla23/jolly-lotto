@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 // Import Swiper React components
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -6,28 +6,31 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import Link from 'next/link'
-import { getAllProducts, getSingleProducts } from '@/lib/api'
+import { getSingleProducts } from '@/lib/api'
 import Image from 'next/image'
 import Head from 'next/head'
+import IconBoxesChecked from '@/components/Icons/IconBoxesChecked'
+import IconPaper from '@/components/Icons/IconPaper'
+import IconMoneyEnvelope from '@/components/Icons/IconMoneyEnvelope'
 
 const sectionData = [
 	{
 		title: 'Choice',
 		content:
 			'Choose which lotteries you want to play. You can play your favorite numbers, or “Quick Pick” for a random selection.',
-		icon: '',
+		icon: <IconBoxesChecked className={'mx-auto w-20'} />,
 	},
 	{
 		title: 'Confirmation',
 		content:
 			"As soon as your order id processed we'll send you a confirmation of your lottery numbers and dates of play.",
-		icon: '',
+		icon: <IconPaper className={'mx-auto w-16'} />,
 	},
 	{
 		title: 'Winnings',
 		content:
 			"When you win a lotto prize, we'll immediately notify you and deposit your winning in to your Lotto Express account.",
-		icon: '',
+		icon: <IconMoneyEnvelope className={'mx-auto w-20'} />,
 	},
 ]
 
@@ -172,16 +175,11 @@ export default function Home({ singleProducts }) {
 
 	const SectionCard = ({ data }) => (
 		<div className="max-w-sm space-y-10">
-			<h3 className="text-center text-2xl  font-medium uppercase text-orange-400">
+			<h3 className="text-center text-2xl font-medium uppercase text-orange-400">
 				{data.title}
 			</h3>
 			<p className="text-amber-900">{data.content}</p>
-			<Image
-				width={80}
-				height={80}
-				className="mx-auto max-w-[80px]"
-				src={'/images/choice-icon.svg'}
-			/>
+			{data.icon}
 		</div>
 	)
 
