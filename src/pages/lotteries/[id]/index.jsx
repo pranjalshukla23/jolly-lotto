@@ -13,6 +13,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ErrorPage from 'next/error'
+import Layout from '@/components/Layout'
 
 export default ({ details, results }) => {
 	const router = useRouter()
@@ -29,7 +30,7 @@ export default ({ details, results }) => {
 	}
 
 	return (
-		<>
+		<Layout>
 			<Head>
 				<title>Lottery Details</title>
 			</Head>
@@ -79,7 +80,7 @@ export default ({ details, results }) => {
 				<SectionResults results={results} />
 			)}
 			<SectionInfo />
-		</>
+		</Layout>
 	)
 }
 
