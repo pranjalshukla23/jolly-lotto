@@ -1,4 +1,3 @@
-import Layout from '@/components/Layout'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
@@ -17,10 +16,10 @@ class MyDocument extends Document {
 						rel="stylesheet"
 					/>
 				</Head>
-				<Layout>
+				<body className="font-heebo antialiased">
 					<Main />
 					<NextScript />
-				</Layout>
+				</body>
 			</Html>
 		)
 	}
