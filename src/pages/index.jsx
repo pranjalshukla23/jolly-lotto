@@ -12,6 +12,8 @@ import Head from 'next/head'
 import IconBoxesChecked from '@/components/Icons/IconBoxesChecked'
 import IconPaper from '@/components/Icons/IconPaper'
 import IconMoneyEnvelope from '@/components/Icons/IconMoneyEnvelope'
+import IconTick from '@/components/Icons/IconTick'
+import Layout from '@/components/Layout'
 
 const sectionData = [
 	{
@@ -75,17 +77,6 @@ export default function Home({ singleProducts }) {
 						<h2 className="font-impact text-7xl text-teal-900">
 							$100 MILLION
 						</h2>
-						<a href="#">Play Now</a>
-					</div>
-				</div>
-			</SwiperSlide>
-			<SwiperSlide className="bg-sky-200">
-				<div className="mx-auto flex max-w-6xl items-center justify-between">
-					<img src="/images/banner-man-1.png" />
-					<div>
-						<h2>Header Lorem Ipsum</h2>
-						<p>Support Lorem Ipsum</p>
-						<h2 className="text-7xl">$100 MILLION</h2>
 						<a href="#">Play Now</a>
 					</div>
 				</div>
@@ -188,10 +179,17 @@ export default function Home({ singleProducts }) {
 			<h3 className="text-2xl font-medium uppercase text-green-600">
 				{data.title}
 			</h3>
-			<ul className="space-y-3">
+			<ul className="space-y-6">
 				{data.content.map((item, idx) => (
-					<li key={idx} className="font-medium text-neutral-800">
-						{item}
+					<li
+						key={idx}
+						className="flex max-w-xs items-start space-x-3 font-medium text-teal-900">
+						<IconTick
+							className={
+								'w-6 shrink-0 fill-current text-green-500'
+							}
+						/>
+						<span>{item}</span>
 					</li>
 				))}
 			</ul>
@@ -199,7 +197,7 @@ export default function Home({ singleProducts }) {
 	)
 
 	return (
-		<>
+		<Layout>
 			<Head>
 				<title>Home</title>
 			</Head>
@@ -244,7 +242,7 @@ export default function Home({ singleProducts }) {
 					</div>
 				</div>
 			</section>
-		</>
+		</Layout>
 	)
 }
 
