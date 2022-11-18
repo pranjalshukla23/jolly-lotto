@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
 // Import Swiper React components
-import { Navigation } from 'swiper'
+import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 import Link from 'next/link'
 import { getSingleProducts } from '@/lib/api'
 import Image from 'next/image'
@@ -20,19 +22,19 @@ const sectionData = [
 		title: 'Choice',
 		content:
 			'Choose which lotteries you want to play. You can play your favorite numbers, or “Quick Pick” for a random selection.',
-		icon: <IconBoxesChecked className={'mx-auto w-20'} />,
+		icon: <IconBoxesChecked className={'mx-auto w-16 md:w-20'} />,
 	},
 	{
 		title: 'Confirmation',
 		content:
 			"As soon as your order id processed we'll send you a confirmation of your lottery numbers and dates of play.",
-		icon: <IconPaper className={'mx-auto w-16'} />,
+		icon: <IconPaper className={'mx-auto w-14 md:w-16'} />,
 	},
 	{
 		title: 'Winnings',
 		content:
 			"When you win a lotto prize, we'll immediately notify you and deposit your winning in to your Lotto Express account.",
-		icon: <IconMoneyEnvelope className={'mx-auto w-20'} />,
+		icon: <IconMoneyEnvelope className={'mx-auto w-16 md:w-20'} />,
 	},
 ]
 
@@ -63,7 +65,16 @@ const qualityData = [
 
 export default function Home({ singleProducts }) {
 	const HeroSlider = () => (
-		<Swiper slidesPerView={1}>
+		<Swiper
+			slidesPerView={1}
+			pagination={{
+				el: 'div[data-hero-pagination]',
+				clickable: true,
+				bulletClass:
+					'h-2.5 w-2.5 bg-gray-200 rounded-full cursor-pointer',
+				bulletActiveClass: 'bg-cyan-400',
+			}}
+			modules={[Pagination]}>
 			<SwiperSlide className="bg-[#dafcfe]">
 				<div className="mx-auto flex max-w-6xl items-center justify-between">
 					<Image
@@ -74,13 +85,34 @@ export default function Home({ singleProducts }) {
 					<div className="text-center">
 						<h2>Header Lorem Ipsum</h2>
 						<p>Support Lorem Ipsum</p>
-						<h2 className="font-impact text-7xl text-teal-900">
+						<h2 className="font-impact text-2xl text-teal-900 sm:text-3xl md:text-7xl">
 							$100 MILLION
 						</h2>
 						<a href="#">Play Now</a>
 					</div>
 				</div>
 			</SwiperSlide>
+			<SwiperSlide className="bg-[#dafcfe]">
+				<div className="mx-auto flex max-w-6xl items-center justify-between">
+					<Image
+						src="/images/banner-man-1.png"
+						width={510}
+						height={290}
+					/>
+					<div className="text-center">
+						<h2>Header Lorem Ipsum</h2>
+						<p>Support Lorem Ipsum</p>
+						<h2 className="font-impact text-2xl text-teal-900 sm:text-3xl md:text-7xl">
+							$100 MILLION
+						</h2>
+						<a href="#">Play Now</a>
+					</div>
+				</div>
+			</SwiperSlide>
+			<div
+				data-hero-pagination
+				class="mt-3 flex justify-center space-x-2"
+			/>
 		</Swiper>
 	)
 
@@ -98,8 +130,22 @@ export default function Home({ singleProducts }) {
 					swiper.navigation.init()
 					swiper.navigation.update()
 				}}
-				spaceBetween={30}
-				slidesPerView={5}>
+				breakpoints={{
+					640: {
+						slidesPerView: 2,
+						spaceBetween: 10,
+					},
+					768: {
+						slidesPerView: 4,
+						spaceBetween: 20,
+					},
+					1024: {
+						slidesPerView: 5,
+						spaceBetween: 30,
+					},
+				}}
+				spaceBetween={10}
+				slidesPerView={1}>
 				{singleProducts.map((product, idx) => (
 					<SwiperSlide
 						key={idx}
@@ -210,7 +256,7 @@ export default function Home({ singleProducts }) {
 			{/* Products section */}
 			<section className="py-12">
 				<div className="container mx-auto">
-					<h2 className="text-center text-2xl font-bold uppercase text-teal-600">
+					<h2 className="hidden text-center text-2xl font-bold uppercase text-teal-600 md:block">
 						Play the world's biggest lotteries online at
 						jollylotto.com
 					</h2>
@@ -221,21 +267,22 @@ export default function Home({ singleProducts }) {
 				</div>
 			</section>
 
-			<section className="bg-orange-50 py-14">
+			<section className="bg-orange-50 py-10 px-6 sm:px-16 sm:py-14">
 				<div className="container mx-auto max-w-6xl">
-					<div className="flex justify-between gap-10">
+					<div className="flex flex-wrap justify-center gap-y-10 md:flex-nowrap md:justify-between">
 						{sectionData.map((data, idx) => (
 							<SectionCard key={idx} data={data} />
 						))}
 					</div>
-					<h2 className="mt-16 text-center text-2xl font-semibold text-orange-400">
+					<h2 className="mt-12 text-center text-xl font-semibold text-orange-400 md:mt-16 md:text-2xl">
 						WE DO THE WORK SO YOU CAN HAVE THE FUN!
 					</h2>
 				</div>
 			</section>
-			<section className="py-14">
+
+			<section className="py-10 px-6 sm:px-16 sm:py-14">
 				<div className="container mx-auto max-w-6xl">
-					<div className="flex justify-between">
+					<div className="flex flex-wrap justify-center gap-y-10 md:flex-nowrap md:justify-between">
 						{qualityData.map((data, idx) => (
 							<QualityCard key={idx} data={data} />
 						))}

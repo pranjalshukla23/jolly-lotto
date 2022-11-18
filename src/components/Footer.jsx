@@ -24,9 +24,9 @@ export default () => {
 	)
 
 	return (
-		<footer className="border-t border-gray-200 bg-cyan-50 py-20">
+		<footer className="border-t border-gray-200 bg-cyan-50 py-14 px-6 sm:px-16 md:py-20">
 			<div className="container mx-auto max-w-6xl">
-				<div className="grid grid-cols-3 grid-rows-2 gap-y-8 gap-x-10">
+				<div className="grid grid-cols-2 gap-y-8 gap-x-10 md:grid-cols-3 md:grid-rows-2">
 					<MenuSection title={'Play Lottery Online'}>
 						<li>
 							<FooterLink href={'#'}>
