@@ -32,7 +32,7 @@ export default () => {
 				<IconWallet className={'mr-2 w-4 fill-current text-gray-500'} />
 				Balance: <strong>$45</strong>
 			</a>
-			<HeaderLink className="hidden md:block" href={'#'}>
+			<HeaderLink className="hidden md:flex" href={'/'}>
 				<UserIcon className="w-4 text-gray-500" />
 				<span className="flex items-center text-sm text-gray-700">
 					John Doe

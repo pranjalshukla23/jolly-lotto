@@ -232,10 +232,12 @@ export default ({ details }) => {
 							</span>
 							<span>
 								$
-								{price *
-									weeks *
-									lotteryLines.length *
-									selectedDrawDays}
+								{Number(
+									price *
+										weeks *
+										lotteryLines.length *
+										selectedDrawDays,
+								).toFixed(2)}
 							</span>
 						</div>
 						{/* total line here */}
@@ -243,10 +245,12 @@ export default ({ details }) => {
 							<strong>Total:</strong>
 							<span>
 								$
-								{price *
-									weeks *
-									lotteryLines.length *
-									selectedDrawDays}
+								{Number(
+									price *
+										weeks *
+										lotteryLines.length *
+										selectedDrawDays,
+								).toFixed(2)}
 							</span>
 						</div>
 					</div>
