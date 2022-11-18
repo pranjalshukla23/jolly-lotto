@@ -175,7 +175,6 @@ export default function Home({ singleProducts }) {
 					className="absolute top-1/3 z-50 flex h-16 w-11 items-center justify-center rounded-tr-lg rounded-br-lg bg-gray-200"
 					ref={prevRef}>
 					<svg
-						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
 						strokeWidth={1.5}
@@ -193,7 +192,6 @@ export default function Home({ singleProducts }) {
 					className="absolute top-1/3 right-0 z-50 flex h-16 w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-gray-200"
 					ref={nextRef}>
 					<svg
-						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
 						strokeWidth={1.5}
@@ -269,7 +267,7 @@ export default function Home({ singleProducts }) {
 
 			<section className="bg-orange-50 py-10 px-6 sm:px-16 sm:py-14">
 				<div className="container mx-auto max-w-6xl">
-					<div className="flex flex-wrap justify-center gap-y-10 md:flex-nowrap md:justify-between">
+					<div className="flex flex-wrap justify-center gap-y-10 md:flex-nowrap md:justify-between md:gap-x-10">
 						{sectionData.map((data, idx) => (
 							<SectionCard key={idx} data={data} />
 						))}

@@ -14,12 +14,6 @@ export default () => {
 					{
 						'relative transition-all': !cta,
 					},
-					{
-						'rounded-full bg-purple-600 px-5 py-3 text-white shadow-md transition-all duration-200 hover:bg-purple-700 hover:shadow-lg': false,
-					},
-					{
-						'text-purple-600 after:scale-x-100': true,
-					},
 					className,
 				)}
 				{...props}>
@@ -38,10 +32,14 @@ export default () => {
 			</nav>
 			<div className="hidden items-center gap-x-2 md:flex">
 				<Link href="/">
-					<IconPhoneCircle className="w-6 fill-current text-gray-500" />
+					<a>
+						<IconPhoneCircle className="w-6 fill-current text-gray-500" />
+					</a>
 				</Link>
 				<Link href="/">
-					<IconEnvelopeCircle className="w-6 fill-current text-gray-500" />
+					<a>
+						<IconEnvelopeCircle className="w-6 fill-current text-gray-500" />
+					</a>
 				</Link>
 			</div>
 		</div>
