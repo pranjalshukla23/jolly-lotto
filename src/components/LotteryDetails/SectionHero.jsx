@@ -32,15 +32,15 @@ export default ({ details }) => {
 					height={80}
 				/>
 				<div className="text-center">
-					<h2 className="text-2xl font-semibold text-zinc-500">
+					<h2 className="text-lg font-semibold text-zinc-500 md:text-2xl">
 						Next {details?.lotteryName} Lotto
 					</h2>
-					<h1 className="font-impact text-7xl font-bold text-cyan-900">
-						<small className="text-3xl">$</small>
+					<h1 className="font-impact text-3xl font-bold text-cyan-900 md:text-7xl">
+						<small className="text-lg md:text-3xl">$</small>
 						{details?.price} Million
 					</h1>
 				</div>
-				<div className="text-center">
+				<div className="hidden text-center md:block">
 					<span className="block text-base text-zinc-600">
 						Draw Cutoff Timer
 					</span>

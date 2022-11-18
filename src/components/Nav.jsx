@@ -29,14 +29,14 @@ export default () => {
 	}
 
 	return (
-		<div className="flex items-center justify-between">
+		<div className="hidden items-center justify-between md:flex">
 			<nav className="space-x-10 text-sm">
 				<NavLink href="/designer">Lotteries</NavLink>
 				<NavLink href="/about">Promotions</NavLink>
 				<NavLink href="/contact">Lottery Results</NavLink>
 				<NavLink href="/contact">Contact Us</NavLink>
 			</nav>
-			<div className="flex items-center gap-x-2">
+			<div className="hidden items-center gap-x-2 md:flex">
 				<Link href="/">
 					<IconPhoneCircle className="w-6 fill-current text-gray-500" />
 				</Link>

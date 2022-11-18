@@ -151,7 +151,7 @@ export default ({ results }) => {
 	}
 
 	return (
-		<section className="container mx-auto mt-8 flex max-w-6xl space-x-5">
+		<section className="container mx-auto mt-8 flex max-w-6xl flex-wrap space-x-5 px-6">
 			<div className="flex-1">
 				<h2 className="text-2xl font-semibold text-teal-600">
 					Play German Lotto Single Play
