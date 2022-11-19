@@ -1,19 +1,12 @@
 import { Bars3Icon, UserIcon } from '@heroicons/react/24/solid'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
-import cs from 'classnames'
 import Link from 'next/link'
 import IconWallet from './Icons/IconWallet'
 import Logo from './Logo'
 import Nav from './Nav'
-import Navigation from './Navigation'
+//import Navigation from './Navigation'
 
 export default () => {
-	const HeaderLink = ({ href, children, className }) => (
-		<Link href={href}>
-			<a className={cs('flex gap-x-2', className)}>{children}</a>
-		</Link>
-	)
-
 	const TopToolbar = () => (
 		<div className="flex items-center justify-end space-x-5">
 			<div className="flex flex-col text-xs">
@@ -32,12 +25,12 @@ export default () => {
 				<IconWallet className={'mr-2 w-4 fill-current text-gray-500'} />
 				Balance: <strong>$45</strong>
 			</a>
-			<HeaderLink className="hidden md:flex" href={'/'}>
+			<Link href={'/'} className="hidden gap-x-2 md:flex">
 				<UserIcon className="w-4 text-gray-500" />
 				<span className="flex items-center text-sm text-gray-700">
 					John Doe
 				</span>
-			</HeaderLink>
+			</Link>
 		</div>
 	)
 
@@ -53,10 +46,8 @@ export default () => {
 					</div>
 				</div>
 
-				<Link href="/">
-					<a className="w-32 flex-shrink-0">
-						<Logo />
-					</a>
+				<Link href="/" className="w-32 flex-shrink-0">
+					<Logo />
 				</Link>
 
 				<div className="flex-1">

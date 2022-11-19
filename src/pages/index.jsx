@@ -80,6 +80,7 @@ export default function Home({ singleProducts }) {
 					<Image
 						src="/images/banner-man-1.png"
 						width={510}
+						alt="banner"
 						height={290}
 					/>
 					<div className="text-center">
@@ -98,6 +99,7 @@ export default function Home({ singleProducts }) {
 						src="/images/banner-man-1.png"
 						width={510}
 						height={290}
+						alt="banner"
 					/>
 					<div className="text-center">
 						<h2>Header Lorem Ipsum</h2>
@@ -111,7 +113,7 @@ export default function Home({ singleProducts }) {
 			</SwiperSlide>
 			<div
 				data-hero-pagination
-				class="mt-3 flex justify-center space-x-2"
+				className="mt-3 flex justify-center space-x-2"
 			/>
 		</Swiper>
 	)
@@ -154,6 +156,7 @@ export default function Home({ singleProducts }) {
 							src={'/images/Australian6-45.png'}
 							width={80}
 							height={80}
+							alt="icon"
 						/>
 						<h3>
 							<span>{product.lotteryName}</span>{' '}
@@ -255,7 +258,7 @@ export default function Home({ singleProducts }) {
 			<section className="py-12">
 				<div className="container mx-auto">
 					<h2 className="hidden text-center text-2xl font-bold uppercase text-teal-600 md:block">
-						Play the world's biggest lotteries online at
+						Play the world&apos;s biggest lotteries online at
 						jollylotto.com
 					</h2>
 

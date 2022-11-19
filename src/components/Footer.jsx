@@ -18,8 +18,8 @@ export default () => {
 	}
 
 	const FooterLink = ({ href, className, children }) => (
-		<Link href={href}>
-			<a className={`text-teal-900 underline ${className}`}>{children}</a>
+		<Link href={href} className={`text-teal-900 underline ${className}`}>
+			{children}
 		</Link>
 	)
 
@@ -135,17 +135,20 @@ export default () => {
 					<Image
 						src="/images/footer/ST_Footer_18.png"
 						width={70}
+						alt="cio"
 						height={70}
 					/>
 					<Image
 						src="/images/footer/ST_Footer_GA.svg"
 						width={150}
 						height={50}
+						alt="cio"
 					/>
 					<Image
 						src="/images/footer/ST_Footer_GC.svg"
 						width={150}
 						height={50}
+						alt="cio"
 					/>
 				</div>
 			</div>

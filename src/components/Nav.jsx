@@ -32,14 +32,10 @@ export default () => {
 			</nav>
 			<div className="hidden items-center gap-x-2 md:flex">
 				<Link href="/">
-					<a>
-						<IconPhoneCircle className="w-6 fill-current text-gray-500" />
-					</a>
+					<IconPhoneCircle className="w-6 fill-current text-gray-500" />
 				</Link>
 				<Link href="/">
-					<a>
-						<IconEnvelopeCircle className="w-6 fill-current text-gray-500" />
-					</a>
+					<IconEnvelopeCircle className="w-6 fill-current text-gray-500" />
 				</Link>
 			</div>
 		</div>

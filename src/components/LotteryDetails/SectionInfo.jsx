@@ -11,8 +11,8 @@ export default () => {
 					<p className="text-sm text-cyan-900">
 						French Lotto combines big jackpots with excellent
 						prize-winning odds making it a lucrative choice to play.
-						Choose 5 winning numbers plus a "lucky" number to win
-						prizes up to €21 million!
+						Choose 5 winning numbers plus a &quote;lucky&quote;
+						number to win prizes up to €21 million!
 					</p>
 					<div className="mt-5">
 						<div className="flex items-center gap-x-5">
