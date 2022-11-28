@@ -52,7 +52,7 @@ export default ({ details }) => {
 		const rng = generateRandomNum(balls.total, balls.max)
 
 		return {
-			completed: false,
+			completed: true,
 			selectedBalls: rng,
 		}
 	}
@@ -65,6 +65,7 @@ export default ({ details }) => {
 					? {
 							...line,
 							selectedBalls: rng,
+							completed: true,
 					  }
 					: { ...line },
 			),
@@ -97,6 +98,7 @@ export default ({ details }) => {
 					? {
 							...line,
 							selectedBalls: [],
+							completed: false,
 					  }
 					: { ...line },
 			),
@@ -181,6 +183,7 @@ export default ({ details }) => {
 					{lotteryLines.map((line, idx) => (
 						<LineCard
 							id={idx}
+							completed={line.completed}
 							quickPick={quickPickBalls}
 							lotteryData={lotteryLines[idx]}
 							setLines={setLotteryLines}
