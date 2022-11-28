@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 export default ({ results }) => {
 	const [months, setMonths] = useState([])
-	const [selectedMonth, setSelectedMonth] = useState('Aug 2022')
+	const [selectedMonth, setSelectedMonth] = useState()
 
 	const getMonths = () => {
 		const z = []
@@ -20,6 +20,7 @@ export default ({ results }) => {
 		})
 
 		setMonths(z)
+		setSelectedMonth(z.at(-1))
 	}
 
 	useEffect(() => {
