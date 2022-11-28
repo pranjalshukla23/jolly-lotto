@@ -162,7 +162,7 @@ export default ({
 			</div>
 			<div className="mt-3">
 				<span className="block text-sm">
-					Select {balls.max} Numbers
+					Select {balls.total} Numbers
 				</span>
 				<div className="mt-2 flex flex-wrap gap-1.5">
 					<LotteryBalls />
