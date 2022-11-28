@@ -6,7 +6,7 @@ export default ({ className }) => {
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 23.457 23.457"
 			className={className}
-			arian-hidden="true">
+			aria-hidden="true">
 			<path
 				d="M860.938 503.03a2.557 2.557 0 012.554 2.554 1.236 1.236 0 102.471 0 5.031 5.031 0 00-5.025-5.025 1.236 1.236 0 000 2.471z"
 				transform="translate(-847.947 -495.118)"></path>

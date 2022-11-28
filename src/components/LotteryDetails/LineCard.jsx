@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { generateRandomNum } from '../Helpers'
+//import { generateRandomNum } from '../Helpers'
 import IconTrash from '../Icons/IconTrash'
 
 export default ({
@@ -101,32 +101,32 @@ export default ({
 		)
 	}
 
-	const BonusBalls = () => {
-		const ballUI = []
-		if (balls.bonus.length > 1) return null
+	//const BonusBalls = () => {
+	//	const ballUI = []
+	//	if (balls.bonus.length > 1) return null
 
-		// @todo: we always take the first bonus ball type.
-		const bonusBall = balls.bonus[0]
+	//	// @todo: we always take the first bonus ball type.
+	//	const bonusBall = balls.bonus[0]
 
-		const rng = generateRandomNum(bonusBall.ballNumber, bonusBall.maxNumber)
-		// need to know which card it 	belongs to.
-		// then set state for that card index.
-		//setLotteryLines((state) => (state[0]['selected'] = ballsToSelect))
+	//	const rng = generateRandomNum(bonusBall.ballNumber, bonusBall.maxNumber)
+	//	// need to know which card it 	belongs to.
+	//	// then set state for that card index.
+	//	//setLotteryLines((state) => (state[0]['selected'] = ballsToSelect))
 
-		//for ( let i = 1; i <= bonusBall.maxNumber; i++ ) {
-		//    <span className="flex h-6 w-6 cursor-pointer items-center justify-center rounded border border-slate-200 bg-amber-100 text-xs">
-		//		1
-		//	</span>
-		//	ballUI.push(<BallUI number={i} isSelected={rng.has(i)} key={i} />)
-		//}
+	//	//for ( let i = 1; i <= bonusBall.maxNumber; i++ ) {
+	//	//    <span className="flex h-6 w-6 cursor-pointer items-center justify-center rounded border border-slate-200 bg-amber-100 text-xs">
+	//	//		1
+	//	//	</span>
+	//	//	ballUI.push(<BallUI number={i} isSelected={rng.has(i)} key={i} />)
+	//	//}
 
-		//<div className="mt-3">
-		//		<span className="block text-sm">Select 2 Super</span>
-		//		<div className="mt-2 flex flex-wrap gap-1.5">
-		//		</div>
-		//	</div>
-		//return ballUI
-	}
+	//	//<div className="mt-3">
+	//	//		<span className="block text-sm">Select 2 Super</span>
+	//	//		<div className="mt-2 flex flex-wrap gap-1.5">
+	//	//		</div>
+	//	//	</div>
+	//	//return ballUI
+	//}
 
 	return (
 		<div

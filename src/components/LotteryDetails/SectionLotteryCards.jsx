@@ -8,7 +8,8 @@ export default ({ details }) => {
 	const balls = details?.lottery?.balls ?? 0
 	const [weeks, setWeeks] = useState(1)
 	const [lotteryLines, setLotteryLines] = useState([])
-	const [price, setPrice] = useState(details?.prices?.price)
+	//const [price, setPrice] = useState(details?.prices?.price)
+	const price = details?.prices?.price
 	const [drawDays, setDrawDays] = useState([])
 	const [selectedDrawDays, setSelectedDrawDays] = useState(0)
 

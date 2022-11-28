@@ -1,11 +1,12 @@
 import Countdown from 'react-countdown'
 import Image from 'next/image'
-import { useState } from 'react'
 
 export default ({ details }) => {
-	const [cutoffTime, setCutoffTime] = useState(
-		Date.now() + details?.lottery?.cut_offs[0]?.hours * 60 * 60 * 1000,
-	)
+	//const [cutoffTime, setCutoffTime] = useState(
+	//	Date.now() + details?.lottery?.cut_offs[0]?.hours * 60 * 60 * 1000,
+	//)
+	const cutoffTime =
+		Date.now() + details?.lottery?.cut_offs[0]?.hours * 60 * 60 * 1000
 
 	const cutOffCountDown = ({ hours, minutes, seconds, completed }) => {
 		if (completed) {
