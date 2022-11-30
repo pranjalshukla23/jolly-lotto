@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 export default ({ results }) => {
 	const [months, setMonths] = useState([])
-	const [selectedMonth, setSelectedMonth] = useState('Aug 2022')
+	const [selectedMonth, setSelectedMonth] = useState()
 
 	const getMonths = () => {
 		const z = []
@@ -20,6 +20,7 @@ export default ({ results }) => {
 		})
 
 		setMonths(z)
+		setSelectedMonth(z.at(-1))
 	}
 
 	useEffect(() => {
@@ -151,7 +152,7 @@ export default ({ results }) => {
 	}
 
 	return (
-		<section className="container mx-auto mt-8 flex max-w-6xl space-x-5">
+		<section className="container mx-auto mt-8 flex max-w-6xl flex-wrap space-x-5 px-6">
 			<div className="flex-1">
 				<h2 className="text-2xl font-semibold text-teal-600">
 					Play German Lotto Single Play

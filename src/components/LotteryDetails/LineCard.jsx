@@ -1,6 +1,5 @@
 import classNames from 'classnames'
-import { useEffect, useState } from 'react'
-import { generateRandomNum } from '../Helpers'
+//import { generateRandomNum } from '../Helpers'
 import IconTrash from '../Icons/IconTrash'
 
 export default ({
@@ -11,6 +10,7 @@ export default ({
 	totalLines,
 	clearList,
 	quickPick,
+	completed,
 }) => {
 	const LotteryBalls = () => {
 		const b = []
@@ -38,29 +38,46 @@ export default ({
 
 		const handleToggleSelected = () => {
 			if (isSelected) {
+				//console.log( '222', id, number )
+				const r = lotteryData.selectedBalls.filter(x => x !== number)
+				//lotteryData.selectedBalls = r
 				setLines(lines =>
-					lines.map(line =>
-						line.id === id
+					lines.map((line, idx) =>
+						idx === id
 							? {
 									...line,
-									selectedBalls: lotteryData.selectedBalls.filter(
-										x => x !== number,
-									),
+									selectedBalls: r,
+									completed: false,
 							  }
 							: { ...line },
 					),
 				)
 			} else {
-				//if (selectedBalls.length < balls.total) {
 				if (lotteryData.selectedBalls.length < balls.total) {
-					let y = lotteryData.selectedBalls.push(number)
+					lotteryData.selectedBalls.push(number)
+
 					setLines(lines =>
-						lines.map(line =>
-							line.id === id
+						lines.map((line, idx) =>
+							idx === id
 								? {
 										...line,
 										selectedBalls:
 											lotteryData.selectedBalls,
+								  }
+								: { ...line },
+						),
+					)
+				}
+
+				if (lotteryData.selectedBalls.length === balls.total) {
+					setLines(lines =>
+						lines.map((line, idx) =>
+							idx === id
+								? {
+										...line,
+										selectedBalls:
+											lotteryData.selectedBalls,
+										completed: true,
 								  }
 								: { ...line },
 						),
@@ -84,38 +101,38 @@ export default ({
 		)
 	}
 
-	const BonusBalls = () => {
-		const ballUI = []
-		if (balls.bonus.length > 1) return null
+	//const BonusBalls = () => {
+	//	const ballUI = []
+	//	if (balls.bonus.length > 1) return null
 
-		// @todo: we always take the first bonus ball type.
-		const bonusBall = balls.bonus[0]
+	//	// @todo: we always take the first bonus ball type.
+	//	const bonusBall = balls.bonus[0]
 
-		const rng = generateRandomNum(bonusBall.ballNumber, bonusBall.maxNumber)
-		// need to know which card it 	belongs to.
-		// then set state for that card index.
-		//setLotteryLines((state) => (state[0]['selected'] = ballsToSelect))
+	//	const rng = generateRandomNum(bonusBall.ballNumber, bonusBall.maxNumber)
+	//	// need to know which card it 	belongs to.
+	//	// then set state for that card index.
+	//	//setLotteryLines((state) => (state[0]['selected'] = ballsToSelect))
 
-		//for ( let i = 1; i <= bonusBall.maxNumber; i++ ) {
-		//    <span className="flex h-6 w-6 cursor-pointer items-center justify-center rounded border border-slate-200 bg-amber-100 text-xs">
-		//		1
-		//	</span>
-		//	ballUI.push(<BallUI number={i} isSelected={rng.has(i)} key={i} />)
-		//}
+	//	//for ( let i = 1; i <= bonusBall.maxNumber; i++ ) {
+	//	//    <span className="flex h-6 w-6 cursor-pointer items-center justify-center rounded border border-slate-200 bg-amber-100 text-xs">
+	//	//		1
+	//	//	</span>
+	//	//	ballUI.push(<BallUI number={i} isSelected={rng.has(i)} key={i} />)
+	//	//}
 
-		//<div className="mt-3">
-		//		<span className="block text-sm">Select 2 Super</span>
-		//		<div className="mt-2 flex flex-wrap gap-1.5">
-		//		</div>
-		//	</div>
-		//return ballUI
-	}
+	//	//<div className="mt-3">
+	//	//		<span className="block text-sm">Select 2 Super</span>
+	//	//		<div className="mt-2 flex flex-wrap gap-1.5">
+	//	//		</div>
+	//	//	</div>
+	//	//return ballUI
+	//}
 
 	return (
 		<div
 			className={classNames('max-w-[225px] rounded-md border p-1.5', {
-				'border-slate-300 bg-zinc-50': true,
-				//'border-red-300 bg-red-100': false,
+				'border-slate-300 bg-zinc-50': completed === true,
+				'border-red-300 bg-red-100': completed === false,
 			})}>
 			<div className="flex items-stretch justify-between gap-x-1 pt-8">
 				<button
@@ -126,7 +143,7 @@ export default ({
 				</button>
 				<button
 					type="button"
-					className="rounded-xl bg-cyan-400 py-1 px-4 text-xs font-medium text-white"
+					className="rounded-xl bg-cyan-400 py-1 px-4 text-xs font-medium text-white hover:bg-cyan-300"
 					onClick={() => clearList(id)}>
 					Clear
 				</button>
@@ -135,7 +152,7 @@ export default ({
 					className={classNames(
 						'rounded-xl py-1 px-4 text-xs font-medium text-white',
 						{
-							'bg-cyan-400': totalLines > 1,
+							'bg-cyan-400 hover:bg-cyan-300': totalLines > 1,
 							'cursor-not-allowed bg-gray-300': totalLines <= 1,
 						},
 					)}
@@ -145,7 +162,7 @@ export default ({
 			</div>
 			<div className="mt-3">
 				<span className="block text-sm">
-					Select {balls.max} Numbers
+					Select {balls.total} Numbers
 				</span>
 				<div className="mt-2 flex flex-wrap gap-1.5">
 					<LotteryBalls />

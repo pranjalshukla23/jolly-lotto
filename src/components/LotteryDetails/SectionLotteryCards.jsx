@@ -8,7 +8,8 @@ export default ({ details }) => {
 	const balls = details?.lottery?.balls ?? 0
 	const [weeks, setWeeks] = useState(1)
 	const [lotteryLines, setLotteryLines] = useState([])
-	const [price, setPrice] = useState(details?.prices?.price)
+	//const [price, setPrice] = useState(details?.prices?.price)
+	const price = details?.prices?.price
 	const [drawDays, setDrawDays] = useState([])
 	const [selectedDrawDays, setSelectedDrawDays] = useState(0)
 
@@ -52,7 +53,7 @@ export default ({ details }) => {
 		const rng = generateRandomNum(balls.total, balls.max)
 
 		return {
-			completed: false,
+			completed: true,
 			selectedBalls: rng,
 		}
 	}
@@ -65,6 +66,7 @@ export default ({ details }) => {
 					? {
 							...line,
 							selectedBalls: rng,
+							completed: true,
 					  }
 					: { ...line },
 			),
@@ -83,7 +85,7 @@ export default ({ details }) => {
 			onClick={() =>
 				setLotteryLines(data => [...data, addLotteryLine()])
 			}>
-			<IconAdd className={'w-16'} />
+			<IconAdd className={'w-10 md:w-16'} />
 			<span className="mt-2.5 block text-base font-semibold text-cyan-900">
 				Add Line
 			</span>
@@ -97,6 +99,7 @@ export default ({ details }) => {
 					? {
 							...line,
 							selectedBalls: [],
+							completed: false,
 					  }
 					: { ...line },
 			),
@@ -149,7 +152,7 @@ export default ({ details }) => {
 	}
 
 	return (
-		<section className="mt-8">
+		<section className="mt-8 px-6">
 			<div className="container mx-auto max-w-6xl">
 				<h2 className="text-2xl font-semibold text-teal-600">
 					Play German Lotto Single Play
@@ -181,6 +184,7 @@ export default ({ details }) => {
 					{lotteryLines.map((line, idx) => (
 						<LineCard
 							id={idx}
+							completed={line.completed}
 							quickPick={quickPickBalls}
 							lotteryData={lotteryLines[idx]}
 							setLines={setLotteryLines}
@@ -193,7 +197,7 @@ export default ({ details }) => {
 					<AddQuickCard />
 				</div>
 			</div>
-			<div className="container mx-auto flex max-w-4xl items-start justify-between">
+			<div className="container mx-auto flex max-w-4xl flex-wrap items-start justify-center md:justify-between">
 				<div className="max-w-sm flex-1">
 					<h4 className="text-base font-semibold text-cyan-900">
 						Duration
@@ -232,10 +236,12 @@ export default ({ details }) => {
 							</span>
 							<span>
 								$
-								{price *
-									weeks *
-									lotteryLines.length *
-									selectedDrawDays}
+								{Number(
+									price *
+										weeks *
+										lotteryLines.length *
+										selectedDrawDays,
+								).toFixed(2)}
 							</span>
 						</div>
 						{/* total line here */}
@@ -243,10 +249,12 @@ export default ({ details }) => {
 							<strong>Total:</strong>
 							<span>
 								$
-								{price *
-									weeks *
-									lotteryLines.length *
-									selectedDrawDays}
+								{Number(
+									price *
+										weeks *
+										lotteryLines.length *
+										selectedDrawDays,
+								).toFixed(2)}
 							</span>
 						</div>
 					</div>

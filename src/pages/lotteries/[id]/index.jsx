@@ -2,24 +2,19 @@ import SectionHero from '@/components/LotteryDetails/SectionHero'
 import SectionInfo from '@/components/LotteryDetails/SectionInfo'
 import SectionLotteryCards from '@/components/LotteryDetails/SectionLotteryCards'
 import SectionResults from '@/components/LotteryDetails/SectionResults'
-import {
-	getAllProducts,
-	getLotteryResults,
-	getProductByID,
-	getSingleProducts,
-} from '@/lib/api'
+import { getLotteryResults, getProductByID, getSingleProducts } from '@/lib/api'
 import classNames from 'classnames'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ErrorPage from 'next/error'
+import Layout from '@/components/Layout'
 
 export default ({ details, results }) => {
 	const router = useRouter()
 	const [activeTab, setActiveTab] = useState('cards')
 
 	if (!router.isFallback && !details?.lottery) {
-		// maybe make an api call to fetch data.
 		return (
 			<ErrorPage
 				title="Data not available for this product"
@@ -29,24 +24,12 @@ export default ({ details, results }) => {
 	}
 
 	return (
-		<>
+		<Layout>
 			<Head>
 				<title>Lottery Details</title>
 			</Head>
 
 			<SectionHero details={details} />
-			{/*<nav className="flex items-center bg-orange-50">
-				<Link href="/">
-					<span className="cursor-pointer border-b-2 border-cyan-900 py-3 px-12 text-center text-base font-semibold text-cyan-900">
-						Single Play
-					</span>
-				</Link>
-				<Link
-					className="cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900"
-					href={`/lotteries/${details?.lottery?.id}/results`}>
-					Results
-				</Link>
-			</nav>*/}
 
 			<div className="container mx-auto flex max-w-6xl items-center bg-orange-50">
 				<span
@@ -79,7 +62,7 @@ export default ({ details, results }) => {
 				<SectionResults results={results} />
 			)}
 			<SectionInfo />
-		</>
+		</Layout>
 	)
 }
 

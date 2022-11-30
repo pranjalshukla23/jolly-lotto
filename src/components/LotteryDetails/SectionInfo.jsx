@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default () => {
 	return (
-		<section className="mt-10 bg-orange-50 py-10">
+		<section className="mt-10 bg-orange-50 py-10 px-6">
 			<div className="mx-auto flex max-w-6xl justify-between gap-x-5">
 				<div className="max-w-xl flex-1">
 					<h2 className="text-2xl font-semibold text-teal-600">
@@ -11,8 +11,8 @@ export default () => {
 					<p className="text-sm text-cyan-900">
 						French Lotto combines big jackpots with excellent
 						prize-winning odds making it a lucrative choice to play.
-						Choose 5 winning numbers plus a "lucky" number to win
-						prizes up to €21 million!
+						Choose 5 winning numbers plus a &quote;lucky&quote;
+						number to win prizes up to €21 million!
 					</p>
 					<div className="mt-5">
 						<div className="flex items-center gap-x-5">
@@ -37,6 +37,7 @@ export default () => {
 				<div className="max-w-xl flex-1">
 					<Image
 						src="/images/oz-doc-img.png"
+						className="hidden md:block"
 						width={600}
 						height={250}
 						alt="ban"

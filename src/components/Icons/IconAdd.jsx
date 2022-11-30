@@ -5,8 +5,7 @@ export default ({ className }) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 56.793 61"
-			className={className}
-		>
+			className={className}>
 			<defs>
 				<linearGradient
 					id="linear-gradient"
@@ -14,8 +13,7 @@ export default ({ className }) => {
 					x2="0.976"
 					y1="0.135"
 					y2="0.89"
-					gradientUnits="objectBoundingBox"
-				>
+					gradientUnits="objectBoundingBox">
 					<stop offset="0" stopColor="#ffa319"></stop>
 					<stop offset="1" stopColor="#fe7b0a"></stop>
 				</linearGradient>
@@ -25,8 +23,7 @@ export default ({ className }) => {
 					height="58.793"
 					x="0"
 					y="1"
-					filterUnits="userSpaceOnUse"
-				>
+					filterUnits="userSpaceOnUse">
 					<feOffset dy="2"></feOffset>
 					<feGaussianBlur result="blur"></feGaussianBlur>
 					<feFlood floodColor="#d27421"></feFlood>
@@ -39,8 +36,7 @@ export default ({ className }) => {
 					height="61"
 					x="17"
 					y="0"
-					filterUnits="userSpaceOnUse"
-				>
+					filterUnits="userSpaceOnUse">
 					<feOffset dx="1" dy="1"></feOffset>
 					<feGaussianBlur result="blur-2"></feGaussianBlur>
 					<feFlood floodColor="#873b00"></feFlood>
@@ -51,29 +47,25 @@ export default ({ className }) => {
 			<g data-name="Group 6761">
 				<g
 					filter="url(#Ellipse_4)"
-					transform="translate(-971 -179) translate(971 179)"
-				>
+					transform="translate(-971 -179) translate(971 179)">
 					<circle
 						cx="28.397"
 						cy="28.397"
 						r="28.397"
 						fill="url(#linear-gradient)"
 						data-name="Ellipse 4"
-						transform="translate(0 1)"
-					></circle>
+						transform="translate(0 1)"></circle>
 				</g>
 				<g
 					filter="url(#_)"
-					transform="translate(-971 -179) translate(971 179)"
-				>
+					transform="translate(-971 -179) translate(971 179)">
 					<text
 						fill="#fff"
 						data-name="+"
 						fontFamily="Heebo-Bold, Heebo"
 						fontSize="41"
 						fontWeight="700"
-						transform="translate(29 43)"
-					>
+						transform="translate(29 43)">
 						<tspan x="-11" y="0">
 							+
 						</tspan>

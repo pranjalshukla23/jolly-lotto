@@ -1,106 +1,154 @@
+import React from 'react'
 import Image from 'next/image'
+import IconEnvelope from './Icons/IconEnvelope'
+import IconPhone from './Icons/IconPhone'
+import Link from 'next/link'
+import IconFacebook from './Icons/IconFacebook'
+import IconTwitter from './Icons/IconTwitter'
 
 export default () => {
+	const MenuSection = ({ title, children, className }) => {
+		return (
+			<div>
+				<h4 className="text-xl font-semibold text-cyan-500">{title}</h4>
+				{/*<ul className="mt-5 ">{children}</ul>*/}
+				<ul className={`mt-5 ${className}`}>{children}</ul>
+			</div>
+		)
+	}
+
+	const FooterLink = ({ href, className, children }) => (
+		<Link href={href} className={`text-teal-900 underline ${className}`}>
+			{children}
+		</Link>
+	)
+
 	return (
-		<footer className="border-t border-gray-200 bg-cyan-50 py-20">
+		<footer className="border-t border-gray-200 bg-cyan-50 py-14 px-6 sm:px-16 md:py-20">
 			<div className="container mx-auto max-w-6xl">
-				<div className="grid grid-cols-3 grid-rows-2 gap-y-8 gap-x-10">
-					<div>
-						<h4 className="text-xl font-semibold text-cyan-600">
-							Learn About Lotto Express
-						</h4>
-						<ul>
-							<li>
-								<a href="#">About Lotto Express</a>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h4 className="text-xl font-semibold text-cyan-500">
-							Learn About Lotto Express
-						</h4>
-						<ul>
-							<li>
-								<a href="#">About Lotto Express</a>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h4 className="text-xl font-semibold text-cyan-500">
-							Learn About Lotto Express
-						</h4>
-						<ul>
-							<li>
-								<a href="#">About Lotto Express</a>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h4 className="text-xl font-semibold text-cyan-500">
-							Learn About Lotto Express
-						</h4>
-						<ul>
-							<li>
-								<a href="#">About Lotto Express</a>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h4 className="text-xl font-semibold text-cyan-500">
-							Learn About Lotto Express
-						</h4>
-						<ul>
-							<li>
-								<a href="#">About Lotto Express</a>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h4 className="text-xl font-semibold text-cyan-500">
-							Learn About Lotto Express
-						</h4>
-						<ul>
-							<li>
-								<a href="#">About Lotto Express</a>
-							</li>
-						</ul>
-					</div>
+				<div className="grid grid-cols-2 gap-y-8 gap-x-10 md:grid-cols-3 md:grid-rows-2">
+					<MenuSection title={'Play Lottery Online'}>
+						<li>
+							<FooterLink href={'#'}>
+								About Lotto Express
+							</FooterLink>
+						</li>
+					</MenuSection>
+					<MenuSection title="Play Lotteries Online">
+						<li>
+							<FooterLink href="/">French Lotto</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Oz Lotto</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Irish Lotto</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Euro Millions</FooterLink>
+						</li>
+					</MenuSection>
+					<MenuSection title="Lottery Results & Winnings">
+						<li>
+							<FooterLink href="/">French Lotto</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Oz Lotto</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Irish Lotto</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Euro Millions</FooterLink>
+						</li>
+					</MenuSection>
+					<MenuSection title="Useful Links">
+						<li>
+							<FooterLink href="/">Responsible</FooterLink>
+						</li>
+						<li>
+							<FooterLink href="/">Gaming Contact Us</FooterLink>
+						</li>
+					</MenuSection>
+					<MenuSection
+						title="Need Help"
+						className={'flex items-center space-x-5'}>
+						<li className="w-20">
+							<a href="#" className="underline">
+								<IconEnvelope
+									className={'w-6 fill-current text-teal-900'}
+								/>
+								Email
+							</a>
+						</li>
+						<li className="w-20">
+							<a href="#" className="underline">
+								<IconPhone
+									className={'w-5 fill-current text-teal-900'}
+								/>
+								Call
+							</a>
+						</li>
+					</MenuSection>
+					<MenuSection
+						title="Find us on!"
+						className={'flex space-x-5'}>
+						<li className="w-20">
+							<IconFacebook
+								className={'w-12 fill-current text-teal-900'}
+							/>
+						</li>
+						<li className="w-20">
+							<IconTwitter
+								className={'w-12 fill-current text-teal-900'}
+							/>
+						</li>
+					</MenuSection>
 				</div>
 
 				<div className="mt-16 space-x-5 divide-x divide-cyan-900 text-center">
-					<a href="#" className="font-base text-cyan-900">
-						Responsible Gaming
-					</a>
-					<a href="#" className="font-base pl-5 text-cyan-900">
-						Responsible Gaming
-					</a>
-					<a href="#" className="font-base pl-5 text-cyan-900">
-						Responsible Gaming
-					</a>
+					<FooterLink href={'/'}>Responsible Gaming</FooterLink>
+					<FooterLink href={'/'} className={'pl-5'}>
+						Terms & Conditions
+					</FooterLink>
+					<FooterLink href={'/'} className={'pl-5'}>
+						Privacy Policy
+					</FooterLink>
+					<FooterLink href={'/'} className={'pl-5'}>
+						Contact Us
+					</FooterLink>
 				</div>
 
 				<div className="mt-10 flex items-center justify-center gap-10">
 					<Image
-						src="/static/images/1.png"
-						alt="Picture of the author"
+						src="/images/footer/gc.png"
+						alt="GC"
 						width={180}
-						height={80}
+						height={50}
 					/>
-					<img
-						className="max-w-[180px]"
-						src="/images/lock-icon.png"
+					<Image
+						src="/images/footer/lock-icon.png"
+						width={180}
+						height={50}
+						alt="SSL"
 					/>
-					<img
-						className="max-w-[180px]"
-						src="/images/ST_Footer_18.png"
+					<Image
+						src="/images/footer/ST_Footer_18.png"
+						width={70}
+						alt="cio"
+						height={70}
 					/>
-					<img
-						className="max-w-[180px]"
-						src="/images/ST_Footer_GA.svg"
+					<Image
+						src="/images/footer/ST_Footer_GA.svg"
+						width={150}
+						height={50}
+						alt="cio"
 					/>
-					<img
-						className="max-w-[180px]"
-						src="/images/ST_Footer_GC.svg"
+					<Image
+						src="/images/footer/ST_Footer_GC.svg"
+						width={150}
+						height={50}
+						alt="cio"
 					/>
 				</div>
 			</div>
