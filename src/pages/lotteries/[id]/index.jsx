@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ErrorPage from 'next/error'
 import Layout from '@/components/Layout'
+import SectionSyndicate from '@/components/LotteryDetails/SectionSyndicate'
 
 export default ({ details, results }) => {
 	const router = useRouter()
@@ -47,6 +48,17 @@ export default ({ details, results }) => {
 					className={classNames(
 						'cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900',
 						{
+							'border-cyan-900': activeTab === 'syndicate',
+							'border-orange-50': activeTab !== 'syndicate',
+						},
+					)}
+					onClick={() => setActiveTab('syndicate')}>
+					Syndicate Play
+				</span>
+				<span
+					className={classNames(
+						'cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900',
+						{
 							'border-cyan-900': activeTab === 'results',
 							'border-orange-50': activeTab !== 'results',
 						},
@@ -58,6 +70,8 @@ export default ({ details, results }) => {
 
 			{activeTab === 'cards' ? (
 				<SectionLotteryCards details={details} />
+			) : activeTab === 'syndicate' ? (
+				<SectionSyndicate results={results} />
 			) : (
 				<SectionResults results={results} />
 			)}
