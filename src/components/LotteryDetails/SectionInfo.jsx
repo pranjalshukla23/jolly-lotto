@@ -14,7 +14,7 @@ export default () => {
 						Choose 5 winning numbers plus a &quote;lucky&quote;
 						number to win prizes up to €21 million!
 					</p>
-					<div className="mt-5">
+					<div className="mt-5 space-y-11">
 						<div className="flex items-center gap-x-5">
 							<Image
 								src="/images/draw-list-icon1.svg"
@@ -32,6 +32,40 @@ export default () => {
 								</p>
 							</div>
 						</div>
+						<div className="flex items-center gap-x-5">
+							<Image
+								src="/images/draw-list-icon1.svg"
+								alt="icon"
+								width={64}
+								height={64}
+							/>
+							<div>
+								<h3 className="text-lg font-semibold text-teal-600">
+									Fantastic Prize odds
+								</h3>
+								<p className="pt-0.5 text-sm text-cyan-900">
+									Overall odds of winning any prize are better
+									than 1 in 6!
+								</p>
+							</div>
+						</div>
+						<div className="flex items-center gap-x-5">
+							<Image
+								src="/images/draw-list-icon1.svg"
+								alt="icon"
+								width={64}
+								height={64}
+							/>
+							<div>
+								<h3 className="text-lg font-semibold text-teal-600">
+									Bonne Chance!
+								</h3>
+								<p className="pt-0.5 text-sm text-cyan-900">
+									Jackpots climb quickly with up to 3
+									rollovers every week!
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div className="max-w-xl flex-1">
@@ -42,9 +76,19 @@ export default () => {
 						height={250}
 						alt="ban"
 					/>
-					<div>
-						<details className="transition-all duration-300">
-							<summary>Details</summary>
+					<div className="mt-8 divide-y divide-black border-t border-b border-black">
+						<details className="cursor-pointer py-4 px-3">
+							<summary>Quick Facts</summary>
+							<p className="px-5 pt-5">
+								Something small enough to escape casual notice.
+							</p>
+						</details>
+						<details className="cursor-pointer py-4 px-3">
+							<summary>10 Prize Categories</summary>
+							Something small enough to escape casual notice.
+						</details>
+						<details className="cursor-pointer py-4 px-3">
+							<summary>Why Play?</summary>
 							Something small enough to escape casual notice.
 						</details>
 					</div>
