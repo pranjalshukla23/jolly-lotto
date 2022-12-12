@@ -44,17 +44,19 @@ export default ({ details, results }) => {
 					onClick={() => setActiveTab('cards')}>
 					Single Play
 				</span>
-				<span
-					className={classNames(
-						'cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900',
-						{
-							'border-cyan-900': activeTab === 'syndicate',
-							'border-orange-50': activeTab !== 'syndicate',
-						},
-					)}
-					onClick={() => setActiveTab('syndicate')}>
-					Syndicate Play
-				</span>
+				{details.type === 5 && (
+					<span
+						className={classNames(
+							'cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900',
+							{
+								'border-cyan-900': activeTab === 'syndicate',
+								'border-orange-50': activeTab !== 'syndicate',
+							},
+						)}
+						onClick={() => setActiveTab('syndicate')}>
+						Syndicate Play
+					</span>
+				)}
 				<span
 					className={classNames(
 						'cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900',
@@ -70,7 +72,7 @@ export default ({ details, results }) => {
 
 			{activeTab === 'cards' ? (
 				<SectionLotteryCards details={details} />
-			) : activeTab === 'syndicate' ? (
+			) : details.type === 5 && activeTab === 'syndicate' ? (
 				<SectionSyndicate results={results} />
 			) : (
 				<SectionResults results={results} />
