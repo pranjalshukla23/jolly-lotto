@@ -2,12 +2,7 @@ import SectionHero from '@/components/LotteryDetails/SectionHero'
 import SectionInfo from '@/components/LotteryDetails/SectionInfo'
 import SectionLotteryCards from '@/components/LotteryDetails/SectionLotteryCards'
 import SectionResults from '@/components/LotteryDetails/SectionResults'
-import {
-	getLotteryResults,
-	getProductByID,
-	getSingleProducts,
-	getAllProducts,
-} from '@/lib/api'
+import { getLotteryResults, getProductByID, getAllProducts } from '@/lib/api'
 import classNames from 'classnames'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
