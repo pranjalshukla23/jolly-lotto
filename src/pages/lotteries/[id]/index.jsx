@@ -44,7 +44,7 @@ export default ({ details, results }) => {
 					onClick={() => setActiveTab('cards')}>
 					Single Play
 				</span>
-				{details.type === 5 && (
+				{details?.type === 5 && (
 					<span
 						className={classNames(
 							'cursor-pointer border-b-2 py-3 px-12 text-center text-base font-semibold text-cyan-900',
@@ -72,8 +72,13 @@ export default ({ details, results }) => {
 
 			{activeTab === 'cards' ? (
 				<SectionLotteryCards details={details} />
-			) : details.type === 5 && activeTab === 'syndicate' ? (
-				<SectionSyndicate results={results} />
+			) : details?.type === 5 &&
+			  details?.lottery?.syndicate_data &&
+			  activeTab === 'syndicate' ? (
+				<SectionSyndicate
+					isSuper={details?.lottery?.syndicate_type}
+					data={details?.lottery?.syndicate_data}
+				/>
 			) : (
 				<SectionResults results={results} />
 			)}
