@@ -138,11 +138,11 @@ export default function Home({ singleProducts }) {
 						spaceBetween: 10,
 					},
 					768: {
-						slidesPerView: 4,
+						slidesPerView: 2,
 						spaceBetween: 20,
 					},
 					1024: {
-						slidesPerView: 5,
+						slidesPerView: 3,
 						spaceBetween: 30,
 					},
 				}}
