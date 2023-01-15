@@ -1,5 +1,13 @@
-export default ({ label, options = [], isReq = false, infoText = null }) => {
-	const name = label.toLowerCase()
+export default ({
+	label,
+	name = null,
+	options = [],
+	isReq = false,
+	infoText = null,
+}) => {
+	if (null === name) {
+		name = label.toLowerCase()
+	}
 
 	return (
 		<div className="flex flex-col gap-y-1">

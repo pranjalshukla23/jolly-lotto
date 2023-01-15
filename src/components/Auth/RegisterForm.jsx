@@ -1,9 +1,57 @@
-import React from 'react'
+import { handleRegistrationForm } from '@/lib/api'
+import React, { useState } from 'react'
 import FormInput from '../FormInput'
 import FormSelect from '../FormSelect'
 import Logo from '../Logo'
+import { useAuth } from '../../hooks/auth'
+import Link from 'next/link'
 
 export default () => {
+	const { register } = useAuth({ middleware: 'guest' })
+	const [errors, setErrors] = useState()
+
+	const handleSome = e => {
+		e.preventDefault()
+
+		const birthDate =
+			e.target.year.value +
+			'-' +
+			e.target.month.value +
+			'-' +
+			e.target.day.value
+		const userData = {
+			password: e.target.password.value,
+			confirmPassword: e.target.confirm_password.value,
+			minimumLegalAge: 18,
+			prefix: 'Ms',
+			firstName: e.target.first_name.value,
+			lastName: e.target.last_name.value,
+			birthDate: birthDate,
+			billingAddress: {
+				street: '101 French Str LOCAL FROM TEST',
+				city: '2988507',
+				postalCode: '101FR',
+				state: '',
+				country: 'FR',
+			},
+			email: e.target.email.value,
+			phone: e.target.phone.value,
+			sessionId: '',
+			ip: '',
+			language: '',
+			currencyCode: '',
+			notification: {
+				isAllowEmail: true,
+				isAllowMarketingEmail: false,
+				isAllowSms: true,
+				isAllowMarketingSms: false,
+				isAllowPhoneCall: false,
+			},
+		}
+
+		console.log('2232', userData)
+		register({ setErrors, userData })
+	}
 	return (
 		<div className="container mx-auto my-10 max-w-2xl items-center bg-white shadow-lg">
 			<div className="py-2">
@@ -12,14 +60,19 @@ export default () => {
 			</div>
 
 			<div className="p-8">
-				<a href="#" className="text-sm text-cyan-500 underline">
+				<Link
+					href="/auth/login"
+					className="text-sm text-cyan-500 underline">
 					&larr; Sign In Here
-				</a>
+				</Link>
 				<h2 className="mt-4 text-center text-xl font-semibold text-teal-700">
 					Create an Account
 				</h2>
 
-				<form className="mt-8 flex items-start justify-between gap-x-10">
+				<form
+					method="POST"
+					onSubmit={handleSome}
+					className="mt-8 flex items-start justify-between gap-x-10">
 					<div className="flex-1 space-y-5">
 						<FormInput
 							type="email"
@@ -68,15 +121,18 @@ export default () => {
 						<div className="flex items-end gap-x-3">
 							<FormSelect
 								label="Date of Birth"
+								name="day"
 								isReq={true}
-								options={['Day', 1, 2, 3, 4]}
+								options={['Day', '01', '02', '03', '04']}
 							/>
 							<FormSelect
 								label=""
-								options={['Month', 1, 2, 3, 4]}
+								name="month"
+								options={['Month', '01', '02', '03', '04']}
 							/>
 							<FormSelect
 								label=""
+								name="year"
 								options={['Year', 1990, 1992, 1993, 1994]}
 							/>
 						</div>
@@ -200,11 +256,12 @@ export default () => {
 								className="mt-5 w-full rounded-md bg-gradient-to-r from-orange-400 to-orange-500 py-3 px-14 text-lg font-semibold text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400">
 								Create New Account
 							</button>
-							<button
+							<Link
+								href="/auth/login"
 								type="button"
-								className="w-full rounded-md bg-cyan-400 px-5 py-2.5 text-lg font-medium text-white shadow shadow-cyan-600">
+								className="w-full rounded-md bg-cyan-400 px-5 py-2.5 text-center text-lg font-medium text-white shadow shadow-cyan-600">
 								Sign In Here
-							</button>
+							</Link>
 						</div>
 					</div>
 				</form>
