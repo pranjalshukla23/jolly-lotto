@@ -25,7 +25,7 @@ export default () => {
 				<IconWallet className={'mr-2 w-4 fill-current text-gray-500'} />
 				Balance: <strong>$45</strong>
 			</a>
-			<Link href={'/'} className="hidden gap-x-2 md:flex">
+			<Link href="/auth" className="hidden gap-x-2 md:flex">
 				<UserIcon className="w-4 text-gray-500" />
 				<span className="flex items-center text-sm text-gray-700">
 					John Doe
