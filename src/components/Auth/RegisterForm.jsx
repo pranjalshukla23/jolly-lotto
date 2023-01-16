@@ -1,4 +1,3 @@
-import { handleRegistrationForm } from '@/lib/api'
 import React, { useState } from 'react'
 import FormInput from '../FormInput'
 import FormSelect from '../FormSelect'
@@ -10,6 +9,7 @@ export default () => {
 	const { register } = useAuth({ middleware: 'guest' })
 	const [errors, setErrors] = useState()
 
+	console.log('s', errors)
 	const handleSome = e => {
 		e.preventDefault()
 

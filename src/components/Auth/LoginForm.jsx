@@ -1,7 +1,5 @@
-import { handleRegistrationForm } from '@/lib/api'
 import React, { useState } from 'react'
 import FormInput from '../FormInput'
-import FormSelect from '../FormSelect'
 import Logo from '../Logo'
 import { useAuth } from '../../hooks/auth'
 import Link from 'next/link'
@@ -13,6 +11,8 @@ export default () => {
 
 	const handleSome = e => {
 		e.preventDefault()
+
+		console.log('s', errors, status)
 
 		const userData = {
 			email: e.target.email.value,
