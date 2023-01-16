@@ -6,9 +6,13 @@ import { useRouter } from 'next/router'
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 	const router = useRouter()
 
-	const { data: user, error, mutate } = useSWR('/api/user', () =>
+	const {
+		data: user,
+		error,
+		mutate,
+	} = useSWR('/jolly-user', () =>
 		axios
-			.get('/api/user')
+			.get('/jolly-user')
 			.then(res => res.data)
 			.catch(error => {
 				if (error.response.status !== 409) throw error
@@ -21,11 +25,11 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
 	const register = async ({ setErrors, ...props }) => {
 		await csrf()
-
 		setErrors([])
 
-		axios
-			.post('/register', props)
+		const { userData } = props
+		await axios
+			.post('/register', userData)
 			.then(() => mutate())
 			.catch(error => {
 				if (error.response.status !== 422) throw error
@@ -40,8 +44,10 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 		setErrors([])
 		setStatus(null)
 
+		const { userData } = props
+
 		axios
-			.post('/login', props)
+			.post('/login', userData)
 			.then(() => mutate())
 			.catch(error => {
 				if (error.response.status !== 422) throw error
@@ -95,7 +101,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 			await axios.post('/logout').then(() => mutate())
 		}
 
-		window.location.pathname = '/login'
+		window.location.pathname = '/'
 	}
 
 	useEffect(() => {

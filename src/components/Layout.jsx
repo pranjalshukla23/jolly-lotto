@@ -1,11 +1,11 @@
 import Footer from './Footer'
 import Header from './Header'
 
-export default ({ children }) => {
+export default ({ children, className }) => {
 	return (
 		<>
 			<Header />
-			<main>{children}</main>
+			<main className={className}>{children}</main>
 			<Footer />
 		</>
 	)
