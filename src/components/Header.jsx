@@ -1,10 +1,10 @@
-import { Bars3Icon, UserIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon } from '@heroicons/react/24/solid'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import IconWallet from './Icons/IconWallet'
 import Logo from './Logo'
 import Nav from './Nav'
-//import Navigation from './Navigation'
+import UserInfo from './Header/UserInfo'
 
 export default () => {
 	const TopToolbar = () => (
@@ -25,12 +25,7 @@ export default () => {
 				<IconWallet className={'mr-2 w-4 fill-current text-gray-500'} />
 				Balance: <strong>$45</strong>
 			</a>
-			<Link href="/auth" className="hidden gap-x-2 md:flex">
-				<UserIcon className="w-4 text-gray-500" />
-				<span className="flex items-center text-sm text-gray-700">
-					John Doe
-				</span>
-			</Link>
+			<UserInfo />
 		</div>
 	)
 

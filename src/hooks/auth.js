@@ -10,9 +10,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 		data: user,
 		error,
 		mutate,
-	} = useSWR('/api/user', () =>
+	} = useSWR('/jolly-user', () =>
 		axios
-			.get('/api/user')
+			.get('/jolly-user')
 			.then(res => res.data)
 			.catch(error => {
 				if (error.response.status !== 409) throw error
@@ -101,7 +101,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 			await axios.post('/logout').then(() => mutate())
 		}
 
-		window.location.pathname = '/login'
+		window.location.pathname = '/'
 	}
 
 	useEffect(() => {

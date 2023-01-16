@@ -1,4 +1,3 @@
-import { useAuth } from '@/hooks/auth'
 import axios from './axios'
 
 //export const getAllProducts = async () => {

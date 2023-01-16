@@ -2,10 +2,16 @@ import React from 'react'
 import Layout from '@/components/Layout'
 import Head from 'next/head'
 import LoginForm from '@/components/Auth/LoginForm'
+import { useRouter } from 'next/router'
+import { useAuth } from '@/hooks/auth'
 
 export default () => {
-	// show login or signup form based on user session state.
-	// for now just show registration form.
+	const { user } = useAuth()
+	const router = useRouter()
+
+	if (user) {
+		router.push('/')
+	}
 
 	return (
 		<Layout className={'flex bg-teal-50'}>

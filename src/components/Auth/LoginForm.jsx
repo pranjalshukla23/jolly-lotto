@@ -29,7 +29,9 @@ export default () => {
 			</div>
 
 			<div className="p-8">
-				<Link href="/auth" className="text-sm text-cyan-500 underline">
+				<Link
+					href="/register"
+					className="text-sm text-cyan-500 underline">
 					&larr; Register Here
 				</Link>
 				<h2 className="mt-4 text-center text-xl font-semibold text-teal-700">
@@ -63,9 +65,9 @@ export default () => {
 								Sign In
 							</button>
 							<Link
-								href="/auth"
+								href="/register"
 								className="w-full rounded-md bg-cyan-400 px-5 py-2.5 text-center text-lg font-medium text-white shadow shadow-cyan-600">
-								Create an Account ss
+								Create an Account
 							</Link>
 						</div>
 					</div>
