@@ -16,7 +16,7 @@ export default () => {
 
 	return (
 		<Menu as="div" className="relative inline-block">
-			{user ? (
+			{user && user.statusCode === 200 ? (
 				<Menu.Button className="flex items-center text-sm text-gray-700">
 					<UserIcon className="mr-1 w-4 text-gray-500" />
 					{user.user.name}

@@ -1,11 +1,14 @@
 export default ({
 	type = 'text',
+	name = null,
 	label,
 	placeholder,
 	isReq = false,
 	infoText = null,
 }) => {
-	const name = label.toLowerCase().replace(' ', '_')
+	if (null === name) {
+		name = label.toLowerCase().replace(' ', '_')
+	}
 
 	return (
 		<div className="flex flex-col gap-y-1">

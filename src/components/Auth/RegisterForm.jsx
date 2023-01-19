@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FormInput from '../FormInput'
 import FormSelect from '../FormSelect'
 import Logo from '../Logo'
 import { useAuth } from '../../hooks/auth'
 import Link from 'next/link'
+import classNames from 'classnames'
 
 export default () => {
 	const { register } = useAuth({ middleware: 'guest' })
-	const [errors, setErrors] = useState()
+	const [errors, setErrors] = useState(null)
+	const [loading, setLoading] = useState(false)
 
-	console.log('s', errors)
 	const handleSome = e => {
 		e.preventDefault()
+		setLoading(true)
 
 		const birthDate =
 			e.target.year.value +
@@ -19,9 +21,10 @@ export default () => {
 			e.target.month.value +
 			'-' +
 			e.target.day.value
+
 		const userData = {
 			password: e.target.password.value,
-			confirmPassword: e.target.confirm_password.value,
+			password_confirmation: e.target.password_confirmation.value,
 			minimumLegalAge: 18,
 			prefix: 'Ms',
 			firstName: e.target.first_name.value,
@@ -49,9 +52,15 @@ export default () => {
 			},
 		}
 
-		console.log('2232', userData)
 		register({ setErrors, userData })
 	}
+
+	useEffect(() => {
+		if (errors) {
+			setLoading(false)
+		}
+	}, [errors])
+
 	return (
 		<div className="container mx-auto my-10 max-w-2xl items-center bg-white shadow-lg">
 			<div className="py-2">
@@ -68,6 +77,16 @@ export default () => {
 				<h2 className="mt-4 text-center text-xl font-semibold text-teal-700">
 					Create an Account
 				</h2>
+
+				{errors && (
+					<div className="mt-3 border-2 border-red-300 bg-red-300/60 px-3 py-2 text-sm text-slate-900">
+						<ul>
+							{Object.keys(errors).map(key => (
+								<li key={key}>{errors[key][0]}</li>
+							))}
+						</ul>
+					</div>
+				)}
 
 				<form
 					method="POST"
@@ -95,6 +114,7 @@ export default () => {
 						/>
 						<FormInput
 							type="password"
+							name="password_confirmation"
 							label="Confirm Password"
 							placeholder="Confirm Password"
 							isReq={true}
@@ -253,7 +273,16 @@ export default () => {
 						<div className="flex flex-col gap-y-5">
 							<button
 								type="submit"
-								className="mt-5 w-full rounded-md bg-gradient-to-r from-orange-400 to-orange-500 py-3 px-14 text-lg font-semibold text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400">
+								{...(loading && { disabled: 'disabled' })}
+								className={classNames(
+									'mt-5 w-full rounded-md  py-3 px-14 text-lg font-semibold text-white shadow-md ',
+									{
+										'cursor-not-allowed bg-slate-300':
+											loading === true,
+										'bg-gradient-to-r from-orange-400 to-orange-500 shadow-orange-700 hover:from-orange-500 hover:to-orange-400':
+											loading !== true,
+									},
+								)}>
 								Create New Account
 							</button>
 							<Link

@@ -25,7 +25,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
 	const register = async ({ setErrors, ...props }) => {
 		await csrf()
-		setErrors([])
+		setErrors(null)
 
 		const { userData } = props
 		await axios
@@ -36,6 +36,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
 				setErrors(error.response.data.errors)
 			})
+
+		window.location.pathname = '/'
 	}
 
 	const login = async ({ setErrors, setStatus, ...props }) => {
@@ -52,7 +54,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 			.catch(error => {
 				if (error.response.status !== 422) throw error
 
-				setErrors(error.response.data.errors)
+				setErrors(errors => [...errors, error.response.data.message])
 			})
 	}
 

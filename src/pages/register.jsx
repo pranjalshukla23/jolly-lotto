@@ -9,7 +9,7 @@ export default () => {
 	const { user } = useAuth()
 	const router = useRouter()
 
-	if (user) {
+	if (user && user.statusCode === 200) {
 		router.push('/')
 	}
 
