@@ -6,13 +6,13 @@ import Link from 'next/link'
 
 export default () => {
 	const { login } = useAuth({ middleware: 'guest' })
-	const [errors, setErrors] = useState()
+	const [errors, setErrors] = useState([])
 	const [status, setStatus] = useState('ok')
 
 	const handleSome = e => {
 		e.preventDefault()
 
-		console.log('s', errors, status)
+		console.log(errors, status)
 
 		const userData = {
 			email: e.target.email.value,
@@ -21,6 +21,8 @@ export default () => {
 
 		login({ setStatus, setErrors, userData })
 	}
+
+	console.log('log err', errors)
 	return (
 		<div className="container mx-auto my-10 max-w-2xl items-center bg-white shadow-lg">
 			<div className="py-2">
@@ -38,6 +40,13 @@ export default () => {
 					Login to Your Account
 				</h2>
 
+				{errors.length > 0 && (
+					<div className="mt-3 border-2 border-red-300 bg-red-300/60 px-3 py-2 text-sm text-slate-900">
+						{errors.map((msg, key) => (
+							<span key={key}>{msg}</span>
+						))}
+					</div>
+				)}
 				<form
 					method="POST"
 					onSubmit={handleSome}
