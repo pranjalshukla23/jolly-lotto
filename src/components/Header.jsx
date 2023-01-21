@@ -1,37 +1,41 @@
-import { Bars3Icon } from '@heroicons/react/24/solid'
-import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
-import IconWallet from './Icons/IconWallet'
-import Logo from './Logo'
-import Nav from './Nav'
-import UserInfo from './Header/UserInfo'
+import { Bars3Icon } from "@heroicons/react/24/solid";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import IconWallet from "./Icons/IconWallet";
+import Logo from "./Logo";
+import Nav from "./Nav";
+import UserInfo from "./Header/UserInfo";
 
 export default () => {
 	const TopToolbar = () => (
-		<div className="flex items-center justify-end space-x-5">
-			<div className="flex flex-col text-xs">
-				<span>Current Time: 4:25 PM</span>
+		<div className="flex items-center justify-end w-1/2 gap-4">
+			<div className="flex text-xs gap-2">
+				{/*<span className="hidden md:block">*/}
+				{/*	Current Time: <br /> 4:25 PM*/}
+				{/*</span>*/}
 				<span>Current Session: 00:14:55</span>
 			</div>
 			<button
 				type="button"
-				className="hidden items-center gap-x-2 rounded-lg bg-gradient-to-r from-green-600 to-lime-500 px-6 py-2 text-sm text-white hover:from-lime-500 hover:to-lime-500 md:flex">
+				className="hidden items-center gap-x-2 rounded-lg bg-gradient-to-r from-green-600 to-lime-500 px-6 py-2 text-sm text-white hover:from-lime-500 hover:to-lime-500 md:flex"
+			>
 				<ArrowDownTrayIcon className="w-4 text-white" />
 				Add Funds
 			</button>
 			<a
 				href="#"
-				className="hidden items-center text-sm text-gray-700 md:flex">
-				<IconWallet className={'mr-2 w-4 fill-current text-gray-500'} />
+				className="hidden items-center text-sm text-gray-700 md:flex"
+			>
+				<IconWallet className={"mr-2 w-4 fill-current text-gray-500"} />
 				Balance: <strong>$45</strong>
 			</a>
 			<UserInfo />
 		</div>
-	)
+	);
 
 	return (
 		<header className="border-b border-b-gray-200 px-6 py-3">
-			<div className="container mx-auto flex max-w-6xl items-center justify-center space-x-20">
+			<div className="flex items-center justify-center gap-8 w-full">
 				{/*<div className="container mx-auto flex max-w-6xl">*/}
 				{/*<Navigation />*/}
 				<div className="md:hidden">
@@ -45,11 +49,11 @@ export default () => {
 					<Logo />
 				</Link>
 
-				<div className="flex-1">
-					<TopToolbar />
+				<div className="flex justify-end md:justify-between items-center">
 					<Nav />
+					<TopToolbar />
 				</div>
 			</div>
 		</header>
-	)
-}
+	);
+};

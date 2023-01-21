@@ -1,95 +1,101 @@
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
 // Import Swiper React components
-import { Navigation, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import Link from 'next/link'
-import { getSingleProducts } from '@/lib/api'
-import Image from 'next/image'
-import Head from 'next/head'
-import IconBoxesChecked from '@/components/Icons/IconBoxesChecked'
-import IconPaper from '@/components/Icons/IconPaper'
-import IconMoneyEnvelope from '@/components/Icons/IconMoneyEnvelope'
-import IconTick from '@/components/Icons/IconTick'
-import Layout from '@/components/Layout'
+import Link from "next/link";
+import { getSingleProducts } from "@/lib/api";
+import Image from "next/image";
+import Head from "next/head";
+import IconBoxesChecked from "@/components/Icons/IconBoxesChecked";
+import IconPaper from "@/components/Icons/IconPaper";
+import IconMoneyEnvelope from "@/components/Icons/IconMoneyEnvelope";
+import IconTick from "@/components/Icons/IconTick";
+import Layout from "@/components/Layout";
 
 const sectionData = [
 	{
-		title: 'Choice',
+		title: "Choice",
 		content:
-			'Choose which lotteries you want to play. You can play your favorite numbers, or “Quick Pick” for a random selection.',
-		icon: <IconBoxesChecked className={'mx-auto w-16 md:w-20'} />,
+			"Choose which lotteries you want to play. You can play your favorite numbers, or “Quick Pick” for a random selection.",
+		icon: <IconBoxesChecked className={"mx-auto w-16 md:w-20"} />,
 	},
 	{
-		title: 'Confirmation',
+		title: "Confirmation",
 		content:
 			"As soon as your order id processed we'll send you a confirmation of your lottery numbers and dates of play.",
-		icon: <IconPaper className={'mx-auto w-14 md:w-16'} />,
+		icon: <IconPaper className={"mx-auto w-14 md:w-16"} />,
 	},
 	{
-		title: 'Winnings',
+		title: "Winnings",
 		content:
 			"When you win a lotto prize, we'll immediately notify you and deposit your winning in to your Lotto Express account.",
-		icon: <IconMoneyEnvelope className={'mx-auto w-16 md:w-20'} />,
+		icon: <IconMoneyEnvelope className={"mx-auto w-16 md:w-20"} />,
 	},
-]
+];
 
 const qualityData = [
 	{
-		title: 'Exciting',
+		title: "Exciting",
 		content: [
 			"The world's most exciting lotteries.",
-			'Play for the biggest jackpots on Earth!',
+			"Play for the biggest jackpots on Earth!",
 		],
 	},
 	{
-		title: 'Secure',
+		title: "Secure",
 		content: [
-			'Highest security standards in the industry.',
-			'Exceeding regulated security requirements.',
-			'Frequent system upgrades to keep your data safe.',
+			"Highest security standards in the industry.",
+			"Exceeding regulated security requirements.",
+			"Frequent system upgrades to keep your data safe.",
 		],
 	},
 	{
-		title: 'Honest',
+		title: "Honest",
 		content: [
-			'Service charges are included in the price.',
-			'No additional fees to collect your winnings or for any other reason.',
+			"Service charges are included in the price.",
+			"No additional fees to collect your winnings or for any other reason.",
 		],
 	},
-]
+];
 
 export default function Home({ singleProducts }) {
 	const HeroSlider = () => (
 		<Swiper
 			slidesPerView={1}
 			pagination={{
-				el: 'div[data-hero-pagination]',
+				el: "div[data-hero-pagination]",
 				clickable: true,
 				bulletClass:
-					'h-2.5 w-2.5 bg-gray-200 rounded-full cursor-pointer',
-				bulletActiveClass: 'bg-cyan-400',
+					"h-2.5 w-2.5 bg-gray-200 rounded-full cursor-pointer",
+				bulletActiveClass: "bg-cyan-400",
 			}}
-			modules={[Pagination]}>
+			modules={[Pagination]}
+		>
 			<SwiperSlide className="bg-[#dafcfe]">
-				<div className="mx-auto flex max-w-6xl items-center justify-between">
+				<div className="mx-auto flex flex-col-reverse md:flex-row items-start justify-center">
 					<Image
 						src="/images/banner-man-1.png"
-						width={510}
+						className="w-1/2 md:w-fit"
+						width={400}
 						alt="banner"
-						height={290}
+						height={200}
 					/>
-					<div className="text-center">
-						<h2>Header Lorem Ipsum</h2>
+					<div className="text-center text-sm w-full md:w-1/2">
+						<h2 className="font-bold text-2xl text-teal-900">
+							Header Lorem Ipsum
+						</h2>
 						<p>Support Lorem Ipsum</p>
 						<h2 className="font-impact text-2xl text-teal-900 sm:text-3xl md:text-7xl">
 							$100 MILLION
 						</h2>
-						<a href="#">Play Now</a>
+						<button className="bg-orange-500 px-6 py-2 rounded-md ml-6 text-white">
+							<a href="#">Play Now</a>
+						</button>
 					</div>
 				</div>
 			</SwiperSlide>
@@ -116,31 +122,69 @@ export default function Home({ singleProducts }) {
 				className="mt-3 flex justify-center space-x-2"
 			/>
 		</Swiper>
-	)
+	);
+	const SwiperElm2 = () => {
+		return (
+			<div className="flex flex-col md:hidden gap-2">
+				{singleProducts.map((product, idx) => (
+					<SwiperSlide
+						key={idx}
+						className="flex flex-col items-center justify-between space-y-2.5 rounded-lg border-l-8 border-r-8 border-yellow-300/80 bg-amber-100 py-6"
+					>
+						<Image
+							src={"/images/Australian6-45.png"}
+							width={80}
+							height={80}
+							alt="icon"
+						/>
+						<h3 className="px-2 text-center">
+							<span>{product.lotteryName}</span>{" "}
+							<strong>{product.price}M</strong>
+						</h3>
+						<Link href={`/lotteries/${product.id}`}>
+							<button
+								className="rounded-lg bg-gradient-to-r from-orange-400 to-orange-500 py-2 px-8 text-sm text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400"
+								type="button"
+							>
+								Play Now
+							</button>
+						</Link>
+
+						<span>Meta text here</span>
+					</SwiperSlide>
+				))}
+			</div>
+		);
+	};
 
 	const SwiperElm = () => {
-		const prevRef = useRef(null)
-		const nextRef = useRef(null)
+		const prevRef = useRef(null);
+		const nextRef = useRef(null);
 
 		return (
 			<Swiper
-				className="relative justify-center"
+				className="relative hidden md:flex justify-center"
 				modules={[Navigation]}
-				onBeforeInit={swiper => {
-					swiper.params.wrapperClass = 'swiper-wrapper justify-center'
+				onBeforeInit={(swiper) => {
+					swiper.params.wrapperClass =
+						"swiper-wrapper justify-center";
 					//swiper.$wrapperEl = document.querySelector(
 					//	'.swiper-wrapper.justify-center',
 					//)
 				}}
-				onInit={swiper => {
-					swiper.params.navigation.prevEl = prevRef.current
-					swiper.params.navigation.nextEl = nextRef.current
-					swiper.navigation.init()
-					swiper.navigation.update()
+				onInit={(swiper) => {
+					swiper.params.navigation.prevEl = prevRef.current;
+					swiper.params.navigation.nextEl = nextRef.current;
+					swiper.navigation.init();
+					swiper.navigation.update();
 				}}
 				breakpoints={{
+					0: {
+						slidesPerView: singleProducts.length - 1,
+						spaceBetween: 10,
+					},
 					640: {
-						slidesPerView: 2,
+						slidesPerView: 3,
 						spaceBetween: 10,
 					},
 					768: {
@@ -153,25 +197,28 @@ export default function Home({ singleProducts }) {
 					},
 				}}
 				spaceBetween={10}
-				slidesPerView={1}>
+				slidesPerView={1}
+			>
 				{singleProducts.map((product, idx) => (
 					<SwiperSlide
 						key={idx}
-						className="flex flex-col items-center justify-between space-y-2.5 rounded-lg border-l-8 border-r-8 border-yellow-300/80 bg-amber-100 py-6">
+						className="flex flex-col items-center justify-between space-y-2.5 rounded-lg border-l-8 border-r-8 border-yellow-300/80 bg-amber-100 py-6"
+					>
 						<Image
-							src={'/images/Australian6-45.png'}
+							src={"/images/Australian6-45.png"}
 							width={80}
 							height={80}
 							alt="icon"
 						/>
 						<h3 className="px-2 text-center">
-							<span>{product.lotteryName}</span>{' '}
+							<span>{product.lotteryName}</span>{" "}
 							<strong>{product.price}M</strong>
 						</h3>
 						<Link href={`/lotteries/${product.id}`}>
 							<button
 								className="rounded-lg bg-gradient-to-r from-orange-400 to-orange-500 py-2 px-8 text-sm text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400"
-								type="button">
+								type="button"
+							>
 								Play Now
 							</button>
 						</Link>
@@ -182,13 +229,15 @@ export default function Home({ singleProducts }) {
 				<button
 					type="button"
 					className="absolute top-1/3 z-50 flex h-16 w-11 items-center justify-center rounded-tr-lg rounded-br-lg bg-gray-200"
-					ref={prevRef}>
+					ref={prevRef}
+				>
 					<svg
 						fill="none"
 						viewBox="0 0 24 24"
 						strokeWidth={1.5}
 						stroke="currentColor"
-						className="h-10 w-10 text-white">
+						className="h-10 w-10 text-white"
+					>
 						<path
 							strokeLinecap="round"
 							strokeLinejoin="round"
@@ -199,13 +248,15 @@ export default function Home({ singleProducts }) {
 				<button
 					type="button"
 					className="absolute top-1/3 right-0 z-50 flex h-16 w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-gray-200"
-					ref={nextRef}>
+					ref={nextRef}
+				>
 					<svg
 						fill="none"
 						viewBox="0 0 24 24"
 						strokeWidth={1.5}
 						stroke="currentColor"
-						className="h-10 w-10 text-white">
+						className="h-10 w-10 text-white"
+					>
 						<path
 							strokeLinecap="round"
 							strokeLinejoin="round"
@@ -214,8 +265,8 @@ export default function Home({ singleProducts }) {
 					</svg>
 				</button>
 			</Swiper>
-		)
-	}
+		);
+	};
 
 	const SectionCard = ({ data }) => (
 		<div className="max-w-sm space-y-10">
@@ -225,7 +276,7 @@ export default function Home({ singleProducts }) {
 			<p className="text-amber-900">{data.content}</p>
 			{data.icon}
 		</div>
-	)
+	);
 
 	const QualityCard = ({ data }) => (
 		<div className="max-w-sm space-y-4">
@@ -236,10 +287,11 @@ export default function Home({ singleProducts }) {
 				{data.content.map((item, idx) => (
 					<li
 						key={idx}
-						className="flex max-w-xs items-start space-x-3 font-medium text-teal-900">
+						className="flex max-w-xs items-start space-x-3 font-medium text-teal-900"
+					>
 						<IconTick
 							className={
-								'w-6 shrink-0 fill-current text-green-500'
+								"w-6 shrink-0 fill-current text-green-500"
 							}
 						/>
 						<span>{item}</span>
@@ -247,7 +299,7 @@ export default function Home({ singleProducts }) {
 				))}
 			</ul>
 		</div>
-	)
+	);
 
 	return (
 		<Layout>
@@ -270,6 +322,7 @@ export default function Home({ singleProducts }) {
 
 					<div className="mx-auto mt-10 max-w-6xl">
 						<SwiperElm />
+						<SwiperElm2 />
 					</div>
 				</div>
 			</section>
@@ -297,13 +350,13 @@ export default function Home({ singleProducts }) {
 				</div>
 			</section>
 		</Layout>
-	)
+	);
 }
 
 export const getStaticProps = async () => {
-	const singleProducts = await getSingleProducts()
+	const singleProducts = await getSingleProducts();
 
 	return {
 		props: { singleProducts },
-	}
-}
+	};
+};
