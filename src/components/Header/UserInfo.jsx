@@ -11,8 +11,8 @@ import {
 import { useAuth } from "@/hooks/auth";
 import Link from "next/link";
 
-export default () => {
-	const { user, logout } = useAuth();
+export default ({ user, logout }) => {
+	//const { user, logout } = useAuth();
 
 	return (
 		<Menu as="div" className="relative inline-block">
@@ -23,11 +23,18 @@ export default () => {
 					<ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
 				</Menu.Button>
 			) : (
-				<Link href="/register" className="hidden gap-x-2 md:flex">
-					<UserIcon className=" text-gray-500" />
-
-					<span className="text-sm text-gray-700">Sign Up</span>
-				</Link>
+				<>
+					<Link href="/register" className="gap-x-2">
+						<button
+							type="button"
+							className="items-center gap-x-2 rounded-lg bg-gradient-to-r from-green-600 to-lime-500 px-4 py-1 md:px-6 md:py-2 text-xs md:text-sm text-white hover:from-lime-500 hover:to-lime-500 md:flex break-keep"
+						>
+							Sign up
+						</button>
+						{/*<UserIcon className="text-sm text-gray-500" />*/}
+						{/*<span className="text-sm text-gray-700">Sign Up</span>*/}
+					</Link>
+				</>
 			)}
 			<Transition
 				as={Fragment}

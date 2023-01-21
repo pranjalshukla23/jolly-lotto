@@ -24,21 +24,21 @@ export default () => {
 	};
 
 	return (
-		<div className="hidden items-center justify-between md:flex gap-2">
-			<nav className="flex space-x-6 text-sm">
+		<div className="hidden items-center justify-between md:flex gap-2 mx-4 w-2/3">
+			<nav className="flex space-x-6 text-sm justify-center items-center w-full">
 				<NavLink href="/designer">Lotteries</NavLink>
 				<NavLink href="/about">Promotions</NavLink>
 				<NavLink href="/contact">Lottery Results</NavLink>
 				<NavLink href="/contact">Contact Us</NavLink>
 			</nav>
-			<div className="hidden items-center gap-x-2 md:flex">
-				<Link href="/">
-					<IconPhoneCircle className="w-6 fill-current text-gray-500" />
-				</Link>
-				<Link href="/">
-					<IconEnvelopeCircle className="w-6 fill-current text-gray-500" />
-				</Link>
-			</div>
+			{/*<div className="hidden items-center gap-x-2 md:flex">*/}
+			{/*	<Link href="/">*/}
+			{/*		<IconPhoneCircle className="w-6 fill-current text-gray-500" />*/}
+			{/*	</Link>*/}
+			{/*	<Link href="/">*/}
+			{/*		<IconEnvelopeCircle className="w-6 fill-current text-gray-500" />*/}
+			{/*	</Link>*/}
+			{/*</div>*/}
 		</div>
 	);
 };

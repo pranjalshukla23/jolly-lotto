@@ -129,7 +129,7 @@ export default function Home({ singleProducts }) {
 				{singleProducts.map((product, idx) => (
 					<SwiperSlide
 						key={idx}
-						className="flex flex-col items-center justify-between space-y-2.5 rounded-lg border-l-8 border-r-8 border-yellow-300/80 bg-amber-100 py-6"
+						className="flex flex-row items-center justify-between space-y-2.5 rounded-lg border-l-8 border-r-8 border-yellow-300/80 bg-amber-100 py-6 px-2"
 					>
 						<Image
 							src={"/images/Australian6-45.png"}
@@ -137,10 +137,13 @@ export default function Home({ singleProducts }) {
 							height={80}
 							alt="icon"
 						/>
-						<h3 className="px-2 text-center">
+						<div className="flex flex-col justify-center items-center text-xs font-medium">
 							<span>{product.lotteryName}</span>{" "}
-							<strong>{product.price}M</strong>
-						</h3>
+							<strong className="text-lg font-bold">
+								{product.price}M
+							</strong>
+						</div>
+
 						<Link href={`/lotteries/${product.id}`}>
 							<button
 								className="rounded-lg bg-gradient-to-r from-orange-400 to-orange-500 py-2 px-8 text-sm text-white shadow-md shadow-orange-700 hover:from-orange-500 hover:to-orange-400"
@@ -150,7 +153,7 @@ export default function Home({ singleProducts }) {
 							</button>
 						</Link>
 
-						<span>Meta text here</span>
+						{/*<span>Meta text here</span>*/}
 					</SwiperSlide>
 				))}
 			</div>
