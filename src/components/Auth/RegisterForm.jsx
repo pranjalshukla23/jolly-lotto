@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import FormInput from '../FormInput'
 import FormSelect from '../FormSelect'
 import Logo from '../Logo'
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
 import classNames from 'classnames'
 

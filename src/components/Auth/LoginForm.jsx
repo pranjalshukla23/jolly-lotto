@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FormInput from '../FormInput'
 import Logo from '../Logo'
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
 
 export default () => {
