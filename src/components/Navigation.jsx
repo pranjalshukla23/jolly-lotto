@@ -91,7 +91,8 @@ const recentPosts = [
 	{ id: 1, name: 'Boost your conversion rate', href: '#' },
 	{
 		id: 2,
-		name: 'How to use search engine optimization to drive traffic to your site',
+		name:
+			'How to use search engine optimization to drive traffic to your site',
 		href: '#',
 	},
 	{ id: 3, name: 'Improve your customer experience', href: '#' },

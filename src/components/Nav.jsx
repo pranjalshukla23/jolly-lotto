@@ -1,8 +1,6 @@
 //import { ShoppingCartIcon } from '@heroicons/react/solid'
-import classNames from "classnames";
-import Link from "next/link";
-import IconEnvelopeCircle from "./Icons/IconEnvelopeCircle";
-import IconPhoneCircle from "./Icons/IconPhoneCircle";
+import classNames from 'classnames'
+import Link from 'next/link'
 
 export default () => {
 	const NavLink = ({ href, cta, className, children, ...props }) => {
@@ -12,20 +10,19 @@ export default () => {
 				// @todo: maybe cleanup this logic here?
 				className={classNames(
 					{
-						"relative transition-all": !cta,
+						'relative transition-all': !cta,
 					},
-					className
+					className,
 				)}
-				{...props}
-			>
+				{...props}>
 				{children}
 			</Link>
-		);
-	};
+		)
+	}
 
 	return (
-		<div className="hidden items-center justify-between md:flex gap-2 mx-4 w-2/3">
-			<nav className="flex space-x-6 text-sm justify-center items-center w-full">
+		<div className="mx-4 hidden w-2/3 items-center justify-between gap-2 md:flex">
+			<nav className="flex w-full items-center justify-center space-x-6 text-sm">
 				<NavLink href="/designer">Lotteries</NavLink>
 				<NavLink href="/about">Promotions</NavLink>
 				<NavLink href="/contact">Lottery Results</NavLink>
@@ -40,5 +37,5 @@ export default () => {
 			{/*	</Link>*/}
 			{/*</div>*/}
 		</div>
-	);
-};
+	)
+}

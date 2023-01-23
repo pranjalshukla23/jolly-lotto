@@ -122,7 +122,12 @@ export default ({ details }) => {
 			} else {
 				setDrawDays(prev =>
 					prev.map(day =>
-						day.id === id ? { ...day, selected: true } : { ...day },
+						day.id === id
+							? {
+									...day,
+									selected: true,
+							  }
+							: { ...day },
 					),
 				)
 
@@ -180,7 +185,7 @@ export default ({ details }) => {
 						</button>
 					</div>
 				</div>
-				<div className="mt-4 mb-20 flex flex-wrap gap-x-1.5 gap-y-3">
+				<div className="mt-4 mb-20 flex flex-wrap justify-center gap-x-1.5  gap-y-3">
 					{lotteryLines.map((line, idx) => (
 						<LineCard
 							id={idx}
@@ -197,15 +202,15 @@ export default ({ details }) => {
 					<AddQuickCard />
 				</div>
 			</div>
-			<div className="container mx-auto flex max-w-4xl flex-wrap items-start justify-center md:justify-between">
-				<div className="max-w-sm flex-1">
+			<div className="container mx-auto flex max-w-4xl flex-col flex-wrap items-center justify-center md:flex-row md:items-start md:justify-between">
+				<div className="max-w-sm flex-1 flex-wrap">
 					<h4 className="text-base font-semibold text-cyan-900">
 						Duration
 					</h4>
 
 					<QuantityInput weeks={weeks} setWeeks={setWeeks} />
 					<div className="mt-7">
-						<h4 className="text-base font-semibold text-cyan-900">
+						<h4 className="my-2 text-base font-semibold text-cyan-900">
 							Select your Draw Days
 						</h4>
 						<ul>
@@ -222,7 +227,7 @@ export default ({ details }) => {
 						</ul>
 					</div>
 				</div>
-				<div className="max-w-sm flex-1">
+				<div className="my-2 max-w-sm flex-1 gap-2">
 					<h4 className="text-base font-semibold text-cyan-900">
 						{details?.lotteryName}
 					</h4>

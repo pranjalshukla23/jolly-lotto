@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import IconEnvelope from "./Icons/IconEnvelope";
-import IconPhone from "./Icons/IconPhone";
-import Link from "next/link";
-import IconFacebook from "./Icons/IconFacebook";
-import IconTwitter from "./Icons/IconTwitter";
+import React from 'react'
+import Image from 'next/image'
+import IconEnvelope from './Icons/IconEnvelope'
+import IconPhone from './Icons/IconPhone'
+import Link from 'next/link'
+import IconFacebook from './Icons/IconFacebook'
+import IconTwitter from './Icons/IconTwitter'
 
 export default () => {
 	const MenuSection = ({ title, children, className }) => {
@@ -14,25 +14,24 @@ export default () => {
 				{/*<ul className="mt-5 ">{children}</ul>*/}
 				<ul className={`mt-5 ${className}`}>{children}</ul>
 			</div>
-		);
-	};
+		)
+	}
 
 	const FooterLink = ({ href, className, children }) => (
 		<Link
 			href={href}
-			className={`text-teal-900 underline ${className} text-center`}
-		>
+			className={`text-teal-900 underline ${className} text-center`}>
 			{children}
 		</Link>
-	);
+	)
 
 	return (
 		<footer className="border-t border-gray-200 bg-cyan-50 py-14 px-6 sm:px-16 md:py-20">
 			<div className="container mx-auto max-w-6xl">
-				<div className="grid grid-cols-1 gap-y-8 gap-x-10 md:grid-cols-3 md:grid-rows-2 justify-items-center text-center">
-					<MenuSection title={"Play Lottery Online"}>
+				<div className="grid grid-cols-1 justify-items-center gap-y-8 gap-x-10 text-center md:grid-cols-3 md:grid-rows-2">
+					<MenuSection title={'Play Lottery Online'}>
 						<li>
-							<FooterLink href={"#"}>
+							<FooterLink href={'#'}>
 								About Lotto Express
 							</FooterLink>
 						</li>
@@ -75,20 +74,23 @@ export default () => {
 					</MenuSection>
 					<MenuSection
 						title="Need Help"
-						className={"flex items-center space-x-5"}
-					>
+						className="flex items-center justify-center space-x-5">
 						<li className="w-20">
-							<a href="#" className="underline">
+							<a
+								href="#"
+								className="flex flex-col items-center justify-center text-center underline">
 								<IconEnvelope
-									className={"w-6 fill-current text-teal-900"}
+									className={'w-6 fill-current text-teal-900'}
 								/>
 								Email
 							</a>
 						</li>
 						<li className="w-20">
-							<a href="#" className="underline">
+							<a
+								href="#"
+								className="flex flex-col items-center justify-center text-center underline underline">
 								<IconPhone
-									className={"w-5 fill-current text-teal-900"}
+									className={'w-5 fill-current text-teal-900'}
 								/>
 								Call
 							</a>
@@ -96,30 +98,29 @@ export default () => {
 					</MenuSection>
 					<MenuSection
 						title="Find us on!"
-						className={"flex space-x-5"}
-					>
-						<li className="w-20">
+						className={'flex space-x-5'}>
+						<li className="flex w-20 items-center justify-center">
 							<IconFacebook
-								className={"w-12 fill-current text-teal-900"}
+								className={'w-12 fill-current text-teal-900'}
 							/>
 						</li>
 						<li className="w-20">
 							<IconTwitter
-								className={"w-12 fill-current text-teal-900"}
+								className={'w-12 fill-current text-teal-900'}
 							/>
 						</li>
 					</MenuSection>
 				</div>
 
 				<div className="mt-16 space-x-5 divide-x divide-cyan-900 text-center">
-					<FooterLink href={"/"}>Responsible Gaming</FooterLink>
-					<FooterLink href={"/"} className={"pl-5"}>
+					<FooterLink href={'/'}>Responsible Gaming</FooterLink>
+					<FooterLink href={'/'} className={'pl-5'}>
 						Terms & Conditions
 					</FooterLink>
-					<FooterLink href={"/"} className={"pl-5"}>
+					<FooterLink href={'/'} className={'pl-5'}>
 						Privacy Policy
 					</FooterLink>
-					<FooterLink href={"/"} className={"pl-5"}>
+					<FooterLink href={'/'} className={'pl-5'}>
 						Contact Us
 					</FooterLink>
 				</div>
@@ -158,5 +159,5 @@ export default () => {
 				</div>
 			</div>
 		</footer>
-	);
-};
+	)
+}

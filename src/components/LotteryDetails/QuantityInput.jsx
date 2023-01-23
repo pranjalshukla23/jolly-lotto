@@ -1,6 +1,6 @@
 export default ({ weeks, setWeeks }) => {
 	return (
-		<div className="flex gap-x-2.5">
+		<div className="flex flex-col flex-wrap items-center justify-center gap-x-2.5 md:flex-row">
 			<button
 				type="button"
 				className="flex h-16 w-14 items-center justify-center rounded-tl-xl rounded-bl-xl bg-gray-100 text-3xl text-white hover:bg-cyan-400"
@@ -12,7 +12,7 @@ export default ({ weeks, setWeeks }) => {
 			<div className="flex flex-col items-center justify-center border-2 border-slate-300 bg-zinc-100">
 				<input
 					type="number"
-					className="border-none bg-transparent p-0 text-center text-lg font-bold focus:ring-0"
+					className="w-24 border-none bg-transparent p-0 text-center text-lg font-bold focus:ring-0"
 					min={1}
 					value={weeks}
 					onChange={e => (e.target.value = weeks)}
